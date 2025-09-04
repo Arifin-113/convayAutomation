@@ -1,286 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="1" failed="2" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-08-31T12:35:40 BDT" name="Default suite" finished-at="2025-08-31T12:36:34 BDT" duration-ms="54419">
+  <suite started-at="2025-09-04T10:25:26 BDT" name="Default suite" finished-at="2025-09-04T10:26:05 BDT" duration-ms="39445">
     <groups>
     </groups>
-    <test started-at="2025-08-31T12:35:40 BDT" name="Default test" finished-at="2025-08-31T12:36:34 BDT" duration-ms="54419">
-      <class name="TestCases.UpcomingMeetingUX">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:35:40 BDT" name="setup" finished-at="2025-08-31T12:35:44 BDT" duration-ms="4182" status="PASS">
+    <test started-at="2025-09-04T10:25:26 BDT" name="Default test" finished-at="2025-09-04T10:26:05 BDT" duration-ms="39445">
+      <class name="TestCases.StartScheduleMeeting">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:25:26 BDT" name="setup" finished-at="2025-09-04T10:25:28 BDT" duration-ms="2092" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="navigateToHomePage2()[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:35:44 BDT" name="navigateToHomePage2" finished-at="2025-08-31T12:35:51 BDT" duration-ms="6783" status="PASS">
+        <test-method is-config="true" signature="navigateToHomePage2()[pri:0, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:25:28 BDT" name="navigateToHomePage2" finished-at="2025-09-04T10:25:34 BDT" duration-ms="5874" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToHomePage2 -->
-        <test-method signature="UpcomingUX1()[pri:1, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:35:51 BDT" name="UpcomingUX1" finished-at="2025-08-31T12:35:55 BDT" duration-ms="4085" status="PASS">
+        <test-method signature="Schedule_Meeting_Cancel()[pri:2, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:25:34 BDT" name="Schedule_Meeting_Cancel" finished-at="2025-09-04T10:25:43 BDT" duration-ms="9293" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- UpcomingUX1 -->
-        <test-method is-config="true" signature="captureFailureScreenshot1(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:35:55 BDT" name="captureFailureScreenshot1" finished-at="2025-08-31T12:35:55 BDT" duration-ms="2" status="PASS">
+        </test-method> <!-- Schedule_Meeting_Cancel -->
+        <test-method is-config="true" signature="captureFailureScreenshot3(org.testng.ITestResult)[pri:0, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:25:43 BDT" name="captureFailureScreenshot3" finished-at="2025-09-04T10:25:43 BDT" duration-ms="16" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=UpcomingUX1 status=SUCCESS method=UpcomingMeetingUX.UpcomingUX1()[pri:1, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- captureFailureScreenshot1 -->
-        <test-method is-config="true" signature="captureFailureScreenshot3(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:35:55 BDT" name="captureFailureScreenshot3" finished-at="2025-08-31T12:35:55 BDT" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=UpcomingUX1 status=SUCCESS method=UpcomingMeetingUX.UpcomingUX1()[pri:1, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
+                <![CDATA[[TestResult name=Schedule_Meeting_Cancel status=SUCCESS method=StartScheduleMeeting.Schedule_Meeting_Cancel()[pri:2, instance:TestCases.StartScheduleMeeting@353352b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureFailureScreenshot3 -->
-        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:35:55 BDT" name="captureFailureScreenshot2" finished-at="2025-08-31T12:35:55 BDT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:25:43 BDT" name="captureFailureScreenshot2" finished-at="2025-09-04T10:25:43 BDT" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=UpcomingUX1 status=SUCCESS method=UpcomingMeetingUX.UpcomingUX1()[pri:1, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
+                <![CDATA[[TestResult name=Schedule_Meeting_Cancel status=SUCCESS method=StartScheduleMeeting.Schedule_Meeting_Cancel()[pri:2, instance:TestCases.StartScheduleMeeting@353352b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureFailureScreenshot2 -->
-        <test-method is-config="true" signature="navigateToHomePage2()[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:35:55 BDT" name="navigateToHomePage2" finished-at="2025-08-31T12:36:00 BDT" duration-ms="4986" status="PASS">
+        <test-method is-config="true" signature="navigateToHomePage2()[pri:0, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:25:43 BDT" name="navigateToHomePage2" finished-at="2025-09-04T10:25:48 BDT" duration-ms="4702" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToHomePage2 -->
-        <test-method signature="UpcomingUX2()[pri:2, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:00 BDT" name="UpcomingUX2" finished-at="2025-08-31T12:36:14 BDT" duration-ms="14066" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//p[@class='CardManagement_date__1e9Y2']"}
-  (Session info: chrome=139.0.7258.155)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.3'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [db372cae308999047e3928ba58732426, findElement {using=xpath, value=//p[@class='CardManagement_date__1e9Y2']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 139.0.7258.155, chrome: {chromedriverVersion: 139.0.7258.154 (9e0d6b2b47f..., userDataDir: C:\Users\USER\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56976}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56976/devtoo..., se:cdpVersion: 139.0.7258.155, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: db372cae308999047e3928ba58732426]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//p[@class='CardManagement_date__1e9Y2']"}
-  (Session info: chrome=139.0.7258.155)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.3'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [db372cae308999047e3928ba58732426, findElement {using=xpath, value=//p[@class='CardManagement_date__1e9Y2']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 139.0.7258.155, chrome: {chromedriverVersion: 139.0.7258.154 (9e0d6b2b47f..., userDataDir: C:\Users\USER\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56976}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56976/devtoo..., se:cdpVersion: 139.0.7258.155, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: db372cae308999047e3928ba58732426
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:519)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:350)
-at Page_Objects.UpcomingMeetingUX_Page.getUpcomingMeetingDate(UpcomingMeetingUX_Page.java:34)
-at TestCases.UpcomingMeetingUX.UpcomingUX2(UpcomingMeetingUX.java:97)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:739)
-at org.testng.TestRunner.run(TestRunner.java:614)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+        <test-method signature="Schedule_Meeting_Start()[pri:3, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:25:48 BDT" name="Schedule_Meeting_Start" finished-at="2025-09-04T10:26:05 BDT" duration-ms="17439" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- UpcomingUX2 -->
-        <test-method is-config="true" signature="captureFailureScreenshot1(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:14 BDT" name="captureFailureScreenshot1" finished-at="2025-08-31T12:36:14 BDT" duration-ms="161" status="PASS">
+        </test-method> <!-- Schedule_Meeting_Start -->
+        <test-method is-config="true" signature="captureFailureScreenshot3(org.testng.ITestResult)[pri:0, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:26:05 BDT" name="captureFailureScreenshot3" finished-at="2025-09-04T10:26:05 BDT" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=UpcomingUX2 status=FAILURE method=UpcomingMeetingUX.UpcomingUX2()[pri:2, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- captureFailureScreenshot1 -->
-        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:14 BDT" name="captureFailureScreenshot2" finished-at="2025-08-31T12:36:14 BDT" duration-ms="155" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=UpcomingUX2 status=FAILURE method=UpcomingMeetingUX.UpcomingUX2()[pri:2, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- captureFailureScreenshot2 -->
-        <test-method is-config="true" signature="captureFailureScreenshot3(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:14 BDT" name="captureFailureScreenshot3" finished-at="2025-08-31T12:36:15 BDT" duration-ms="131" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=UpcomingUX2 status=FAILURE method=UpcomingMeetingUX.UpcomingUX2()[pri:2, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
+                <![CDATA[[TestResult name=Schedule_Meeting_Start status=SUCCESS method=StartScheduleMeeting.Schedule_Meeting_Start()[pri:3, instance:TestCases.StartScheduleMeeting@353352b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureFailureScreenshot3 -->
-        <test-method is-config="true" signature="navigateToHomePage2()[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:15 BDT" name="navigateToHomePage2" finished-at="2025-08-31T12:36:20 BDT" duration-ms="4943" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- navigateToHomePage2 -->
-        <test-method signature="UpcomingUX3()[pri:3, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:20 BDT" name="UpcomingUX3" finished-at="2025-08-31T12:36:34 BDT" duration-ms="14088" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='cnv-jon-btn-small UpcomingMeetingCard_textAlign__3eQQQ']"}
-  (Session info: chrome=139.0.7258.155)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.3'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [db372cae308999047e3928ba58732426, findElement {using=xpath, value=//div[@class='cnv-jon-btn-small UpcomingMeetingCard_textAlign__3eQQQ']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 139.0.7258.155, chrome: {chromedriverVersion: 139.0.7258.154 (9e0d6b2b47f..., userDataDir: C:\Users\USER\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56976}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56976/devtoo..., se:cdpVersion: 139.0.7258.155, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: db372cae308999047e3928ba58732426]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='cnv-jon-btn-small UpcomingMeetingCard_textAlign__3eQQQ']"}
-  (Session info: chrome=139.0.7258.155)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.3'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [db372cae308999047e3928ba58732426, findElement {using=xpath, value=//div[@class='cnv-jon-btn-small UpcomingMeetingCard_textAlign__3eQQQ']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 139.0.7258.155, chrome: {chromedriverVersion: 139.0.7258.154 (9e0d6b2b47f..., userDataDir: C:\Users\USER\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56976}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56976/devtoo..., se:cdpVersion: 139.0.7258.155, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: db372cae308999047e3928ba58732426
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:519)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:350)
-at Page_Objects.UpcomingMeetingUX_Page.getButtonText(UpcomingMeetingUX_Page.java:39)
-at TestCases.UpcomingMeetingUX.UpcomingUX3(UpcomingMeetingUX.java:119)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:739)
-at org.testng.TestRunner.run(TestRunner.java:614)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- UpcomingUX3 -->
-        <test-method is-config="true" signature="captureFailureScreenshot1(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:34 BDT" name="captureFailureScreenshot1" finished-at="2025-08-31T12:36:34 BDT" duration-ms="134" status="PASS">
+        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:26:05 BDT" name="captureFailureScreenshot2" finished-at="2025-09-04T10:26:05 BDT" duration-ms="0" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=UpcomingUX3 status=FAILURE method=UpcomingMeetingUX.UpcomingUX3()[pri:3, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- captureFailureScreenshot1 -->
-        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:34 BDT" name="captureFailureScreenshot2" finished-at="2025-08-31T12:36:34 BDT" duration-ms="133" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=UpcomingUX3 status=FAILURE method=UpcomingMeetingUX.UpcomingUX3()[pri:3, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
+                <![CDATA[[TestResult name=Schedule_Meeting_Start status=SUCCESS method=StartScheduleMeeting.Schedule_Meeting_Start()[pri:3, instance:TestCases.StartScheduleMeeting@353352b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureFailureScreenshot2 -->
-        <test-method is-config="true" signature="captureFailureScreenshot3(org.testng.ITestResult)[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:34 BDT" name="captureFailureScreenshot3" finished-at="2025-08-31T12:36:34 BDT" duration-ms="142" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=UpcomingUX3 status=FAILURE method=UpcomingMeetingUX.UpcomingUX3()[pri:3, instance:TestCases.UpcomingMeetingUX@645aa696] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- captureFailureScreenshot3 -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:TestCases.UpcomingMeetingUX@645aa696]" started-at="2025-08-31T12:36:34 BDT" name="teardown" finished-at="2025-08-31T12:36:34 BDT" duration-ms="372" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:TestCases.StartScheduleMeeting@353352b6]" started-at="2025-09-04T10:26:05 BDT" name="teardown" finished-at="2025-09-04T10:26:05 BDT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- TestCases.UpcomingMeetingUX -->
+      </class> <!-- TestCases.StartScheduleMeeting -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

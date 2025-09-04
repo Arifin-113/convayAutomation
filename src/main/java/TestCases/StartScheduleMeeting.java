@@ -52,7 +52,7 @@ public class StartScheduleMeeting {
 	    
 	    // Initialize WebDriver with ChromeOptions
 	    driver = new ChromeDriver(options);
-	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 	    driver.manage().window().maximize();
 
 	    // Setup Excel file
@@ -211,6 +211,6 @@ public class StartScheduleMeeting {
 	@AfterClass
 	void teardown() throws IOException {
 		ExcelWBook.close();
-		driver.close();
+//		driver.close();
 	}
 }

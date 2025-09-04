@@ -16,11 +16,11 @@ public class StartScheduleMeeting_Page {
 	By sceduler_loc = By.xpath("//div[contains(@class,'cnv-open-box')]");
 	By startTime_loc = By.xpath("//div[@class='cnv-form-group-col-2-select']//div[1]//div[1]//div[1]//div[1]//*[name()='svg']");
 	By selectStartTime_loc = By.xpath("//div[@class='rbc-events-container']");
-	By save_loc = By.xpath("//button[@id='save-schedule']");
+	By save_loc = By.xpath("//button[contains(@id, 'save-schedule')]");
 	By ok_loc = By.xpath("//button[normalize-space()='Ok']");
 	By toaster_Message = By.xpath("//div[@class='cnv-toast-body']");
 	By meetingManagement_loc = By.xpath("//span[normalize-space()='Meeting Management']");
-	By startScheduledMeeting_loc = By.xpath("//span[contains(@class,'UpcomingPrevious_buttonHover__tbVyE')]");
+	By startScheduledMeeting_loc = By.xpath("//span[contains(@class,'undefined')]");
 	By btn_Start = By.xpath("//button[@id='startButton']");
 	By btn_cross_loc = By.xpath("//div[@class='cnv-start-up-modal-left']");
 	

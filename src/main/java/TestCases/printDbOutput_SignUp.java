@@ -17,7 +17,7 @@ public class printDbOutput_SignUp {
         String activationLink = null;
 
         // Database connection details
-        String jdbcURL    = "jdbc:mysql://meet2.synesisit.info:35559/organization_settings_v2";
+        String jdbcURL    = "jdbc:mysql://meet2.synesisit.info:35559/organization_settings";
         String dbUser     = "conVeyDevloperUse1ly";
         String dbPassword = "iZTlLI6ujUkvAul4hW";
 
