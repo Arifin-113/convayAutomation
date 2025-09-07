@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\SIL_Laptop\AppData\Local\Temp\testng-eclipse--1010950380\testng-customsuite.xml</span>
+                    <span>C:\Users\SIL_Laptop\AppData\Local\Temp\testng-eclipse-477630106\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="TestCases.MeetingManagementDeleteMeeting" class="method navigator-link" hash-for-method="Schedule_Meeting_Delete">Schedule_Meeting_Delete</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="TestCases.SignUpFromLanding" class="method navigator-link" hash-for-method="SignUpTestDuplicateEmail">SignUpTestDuplicateEmail</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -117,7 +117,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="TestCases.MeetingManagementDeleteMeeting" class="method navigator-link" hash-for-method="Schedule_Meeting">Schedule_Meeting</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="TestCases.SignUpFromLanding" class="method navigator-link" hash-for-method="SignUpTestValid">SignUpTestValid</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -135,20 +135,16 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">TestCases.MeetingManagementDeleteMeeting</span>
+              <span class="class-name">TestCases.SignUpFromLanding</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="Schedule_Meeting_Delete">
-                  </a> <!-- Schedule_Meeting_Delete -->
-                  <span class="method-name">Schedule_Meeting_Delete</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at org.testng.Assert.assertTrue(Assert.java:67)
-	at TestCases.MeetingManagementDeleteMeeting.Schedule_Meeting_Delete(MeetingManagementDeleteMeeting.java:170)
+                  <a name="SignUpTestDuplicateEmail">
+                  </a> <!-- SignUpTestDuplicateEmail -->
+                  <span class="method-name">SignUpTestDuplicateEmail</span>
+                  <div class="stack-trace">java.lang.NullPointerException
+	at TestCases.SignUpFromLanding.SignUpTestDuplicateEmail(SignUpFromLanding.java:126)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -186,14 +182,14 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">TestCases.MeetingManagementDeleteMeeting</span>
+              <span class="class-name">TestCases.SignUpFromLanding</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="Schedule_Meeting">
-                  </a> <!-- Schedule_Meeting -->
-                  <span class="method-name">Schedule_Meeting</span>
+                  <a name="SignUpTestValid">
+                  </a> <!-- SignUpTestValid -->
+                  <span class="method-name">SignUpTestValid</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -201,7 +197,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\SIL_Laptop\AppData\Local\Temp\testng-eclipse--1010950380\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\SIL_Laptop\AppData\Local\Temp\testng-eclipse-477630106\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -210,7 +206,7 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;TestCases.MeetingManagementDeleteMeeting&quot;/&gt;
+      &lt;class name=&quot;TestCases.SignUpFromLanding&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -252,18 +248,18 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'Schedule_Meeting_Delete')
-data.setCell(0, 2, 'TestCases.MeetingManagementDeleteMeeting')
-data.setCell(0, 3, 15609);
+data.setCell(0, 1, 'SignUpTestValid')
+data.setCell(0, 2, 'TestCases.SignUpFromLanding')
+data.setCell(0, 3, 15739);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'Schedule_Meeting')
-data.setCell(1, 2, 'TestCases.MeetingManagementDeleteMeeting')
-data.setCell(1, 3, 13235);
+data.setCell(1, 1, 'SignUpTestDuplicateEmail')
+data.setCell(1, 2, 'TestCases.SignUpFromLanding')
+data.setCell(1, 3, 1);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 28 seconds</span>
+              <span class="suite-total-time">Total running time: 15 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -289,48 +285,48 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">TestCases.MeetingManagementDeleteMeeting</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">TestCases.SignUpFromLanding</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
-                <span class="method-name">navigateToHomePage2</span>
-                <span class="method-start">2120 ms</span>
+                <span class="method-name">navigateToSignUpPage</span>
+                <span class="method-start">2183 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">Schedule_Meeting</span>
-                <span class="method-start">8484 ms</span>
+                <span class="method-name">SignUpTestValid</span>
+                <span class="method-start">8031 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">captureFailureScreenshot1([TestResult name=Schedule_Meeting status=SUCCESS method=MeetingManagementDeleteMeeting.Schedule_Meet...)</span>
-                <span class="method-start">21726 ms</span>
+                <span class="method-name">afterMethod1([TestResult name=SignUpTestValid status=SUCCESS method=SignUpFromLanding.SignUpTestValid()[pri:1, in...)</span>
+                <span class="method-start">23770 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method after">
-                <span class="method-name">captureFailureScreenshot2([TestResult name=Schedule_Meeting status=SUCCESS method=MeetingManagementDeleteMeeting.Schedule_Meet...)</span>
-                <span class="method-start">21726 ms</span>
+                <span class="method-name">afterMethod2([TestResult name=SignUpTestValid status=SUCCESS method=SignUpFromLanding.SignUpTestValid()[pri:1, in...)</span>
+                <span class="method-start">23770 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
-                <span class="method-name">navigateToHomePage2</span>
-                <span class="method-start">21730 ms</span>
+                <span class="method-name">navigateToSignUpPage</span>
+                <span class="method-start">23786 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">Schedule_Meeting_Delete</span>
-                <span class="method-start">26524 ms</span>
+                <span class="method-name">SignUpTestDuplicateEmail</span>
+                <span class="method-start">24404 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">captureFailureScreenshot1([TestResult name=Schedule_Meeting_Delete status=FAILURE method=MeetingManagementDeleteMeeting.Schedu...)</span>
-                <span class="method-start">42133 ms</span>
+                <span class="method-name">afterMethod1([TestResult name=SignUpTestDuplicateEmail status=FAILURE method=SignUpFromLanding.SignUpTestDuplicat...)</span>
+                <span class="method-start">24409 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method after">
-                <span class="method-name">captureFailureScreenshot2([TestResult name=Schedule_Meeting_Delete status=FAILURE method=MeetingManagementDeleteMeeting.Schedu...)</span>
-                <span class="method-start">42306 ms</span>
+                <span class="method-name">afterMethod2([TestResult name=SignUpTestDuplicateEmail status=FAILURE method=SignUpFromLanding.SignUpTestDuplicat...)</span>
+                <span class="method-start">24575 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">42449 ms</span>
+                <span class="method-start">24715 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -1,6 +1,7 @@
 package Page_Objects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,64 +14,132 @@ public class MeetingManagementEditMeeting_Page {
 	WebDriverWait wait;
 
 	// Define locators
-	By sceduler_loc = By.xpath("//div[contains(@class,'cnv-open-box')]");
-	By startTime_loc = By.xpath("//div[@class='cnv-form-group-col-2-select']//div[1]//div[1]//div[1]//div[1]//*[name()='svg']");
-	By selectStartTime_loc = By.xpath("//div[@class='cnv-col-xl-1 cnv-col-lg-1 cnv-col-md-1 cnv-mt-1 ScheduleCreateTimezone_marginAlignment__2XguW']");
-	By save_loc = By.xpath("//button[@id='save-schedule']");
-	By cancel_loc = By.xpath("//button[@class='cnv-btn cnv-btn-cancel-new cnv-mr-3']");
-	By ok_loc = By.xpath("//button[normalize-space()='Ok']");
-	By toaster_Message = By.xpath("//div[@class='cnv-toast-body']");
+//	By sceduler_loc = By.xpath("//div[contains(@class,'cnv-open-box')]");
+//	By startTime_loc = By.xpath("//div[@class='cnv-form-group-col-2-select']//div[1]//div[1]//div[1]//div[1]//*[name()='svg']");
+//	By selectStartTime_loc = By.xpath("//div[@class='cnv-col-xl-1 cnv-col-lg-1 cnv-col-md-1 cnv-mt-1 ScheduleCreateTimezone_marginAlignment__2XguW']");
+//	By save_loc = By.xpath("//button[@id='save-schedule']");
+//	By cancel_loc = By.xpath("//button[@class='cnv-btn cnv-btn-cancel-new cnv-mr-3']");
+//	By ok_loc = By.xpath("//button[normalize-space()='Ok']");
+//	
+	 // Define locators (aligned with CSV where possible)
+    By sceduler_loc = By.xpath("//div[contains(text(),'Open Scheduler')]");
+    By startTime_loc = By.xpath("//div[@class='cnv-form-group-col-2-select']//div[1]//div[1]//div[1]//div[1]//*[name()='svg']");
+//    By selectStartTime_loc = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[5]/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[1]");
+//    By selectStartTime_loc = By.cssSelector("body > div:nth-child(4) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(5) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > ul:nth-child(3) > li:nth-child(1)");
+//    By selectStartTime_loc = By.xpath("//div[@class='cnv-form-group-col-2-select']//div[1]//div[1]//div[1]//div[1]//*[name()='svg']");
+    
+//    By selectStartTime_loc = By.xpath("//ul[contains(@class,'timepicker') or contains(@class,'dropdown') or contains(@class,'menu')]//li[not(contains(@class,'disabled'))][1]");
+    
+    By save_loc = By.xpath("//button[@id='save-schedule']");
+    By cancel_loc = By.xpath("//button[@class='cnv-btn cnv-btn-cancel-new cnv-mr-3']");
+    By ok_loc = By.xpath("//button[contains(text(),'Ok')]");
+    By toaster_Message = By.xpath("//div[@class='cnv-toast-body']");
+
+//	By toaster_Message = By.xpath("//div[@class='cnv-toast-body']");
 	By meetingManagement_loc = By.xpath("//span[normalize-space()='Meeting Management']");
 	By selectMeeting_loc = By.xpath("//div[@class='cnv-flex-one']");
 	By editMeeting_loc = By.xpath("//div[@class='cnv-meeting-details-icon EventDetails_inlineStyle__naHP5']//div//a//*[name()='svg']//*[name()='g' and contains(@data-name,'Group 1106')]//*[name()='rect' and contains(@data-name,'Rectangle ')]");
+	By clickAny_loc = By.xpath("//label[normalize-space()='Meeting Title']");
 	
+//	// Constructor
+//	public MeetingManagementEditMeeting_Page(WebDriver driver) {
+//		this.driver = driver;
+//		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	}
+//
+//	// Method to click Open Sceduler
+//	public void clickScheduler() {
+//		driver.findElement(sceduler_loc).click();
+//		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	}
+//
+//	public WebElement getCardContainer() {
+//		// Locate the scrollable container element within the card
+//		return driver.findElement(By.xpath("//body/div[@id='root']/div[@class='cnv-wrapper cnv-theme-light']/div[@class='cnv-content-area']/div[@class='cnv-content']/div[@id='portalForModal']/div[@class='cnv-container-fluid Scheduler_main__F23x0']/div[@class='Scheduler_scheduleCreate__2kizM']/div[@class='cnv-container']/div[@class='cnv-card schedule-create-custom']/div[@class='cnv-card-body']/div[@id='taber1']/div[@id='event-details']/div/div[1]"));
+//	}
 	
 	// Constructor
-	public MeetingManagementEditMeeting_Page(WebDriver driver) {
-		this.driver = driver;
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
+    public MeetingManagementEditMeeting_Page(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
-	// Method to click Open Sceduler
-	public void clickScheduler() {
-		driver.findElement(sceduler_loc).click();
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
+    // Method to click Open Scheduler
+    public void clickScheduler() {
+        WebElement scheduler = wait.until(ExpectedConditions.elementToBeClickable(sceduler_loc));
+        scheduler.click();
+    }
 
-	public WebElement getCardContainer() {
-		// Locate the scrollable container element within the card
-		return driver.findElement(By.xpath("//body/div[@id='root']/div[@class='cnv-wrapper cnv-theme-light']/div[@class='cnv-content-area']/div[@class='cnv-content']/div[@id='portalForModal']/div[@class='cnv-container-fluid Scheduler_main__F23x0']/div[@class='Scheduler_scheduleCreate__2kizM']/div[@class='cnv-container']/div[@class='cnv-card schedule-create-custom']/div[@class='cnv-card-body']/div[@id='taber1']/div[@id='event-details']/div/div[1]"));
+    // Method to scroll to and click start time (kept but not used in test per clarification)
+    public void clickStartTime() {
+        WebElement startTime = wait.until(ExpectedConditions.presenceOfElementLocated(startTime_loc));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", startTime);
+        wait.until(ExpectedConditions.elementToBeClickable(startTime_loc)).click();
+    }
+
+    // Method to save the schedule meeting
+    public void selectSave() {
+        WebElement saveButton = wait.until(ExpectedConditions.presenceOfElementLocated(save_loc));
+        // Scroll save button into view for reliability
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", saveButton);
+        System.out.println("Attempting to click Save button.");
+        wait.until(ExpectedConditions.elementToBeClickable(save_loc)).click();
+        System.out.println("Clicked Save button.");
+    }
+
+    // Method to click on cancel (kept but not used in test per CSV)
+    public void selectCancel() {
+        wait.until(ExpectedConditions.elementToBeClickable(cancel_loc)).click();
+    }
+
+    // Method to click on OK button
+    public void selectOK() {
+        wait.until(ExpectedConditions.elementToBeClickable(ok_loc)).click();
+    }
+
+//    // Method to get toaster message
+//    public String getToasterValue() {
+//        WebElement toasterMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toaster_Message));
+//        return toasterMessageElement.getText();
+//    }
+	public String clickAny() {
+		// Wait for the toaster message to be visible and return its text
+		WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(clickAny_loc));
+		return msg.getText();
 	}
+	
 
 	// Method to click on start time to schedule a meeting
-	public void clickStartTime() {
-		driver.findElement(startTime_loc).click();
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
-
-	// Method to select a start time
-	public void selectStart() {
-		driver.findElement(selectStartTime_loc).click();
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
-
-	// Method to save the schedule meeting
-	public void selectSave() {
-		driver.findElement(save_loc).click();
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
-
-	// Method to click on cancel button
-	public void selectCancel() {
-		driver.findElement(cancel_loc).click();
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
-
-	// Method to click on OK button
-	public void selectOK() {
-		driver.findElement(ok_loc).click();
-		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
+//	public void clickStartTime() {
+//		driver.findElement(startTime_loc).click();
+//		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	}
+//
+//	// Method to select a start time
+//	public void selectStart() {
+//		driver.findElement(selectStartTime_loc).click();
+//		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	}
+//
+//	// Method to save the schedule meeting
+//	public void selectSave() {
+//		driver.findElement(save_loc).click();
+//		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	}
+//
+//	// Method to click on cancel button
+//	public void selectCancel() {
+//		driver.findElement(cancel_loc).click();
+//		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	}
+//
+//	// Method to click on OK button
+//	public void selectOK() {
+//		driver.findElement(ok_loc).click();
+//		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	}
 
 	// Method to click on Meeting Management
 	public void clickMeetingManagement() {
@@ -90,9 +159,9 @@ public class MeetingManagementEditMeeting_Page {
 	}
 
 
-	public String getToasterValue() {
-		// Wait for the toaster message to be visible and return its text
-		WebElement toasterMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toaster_Message));
-		return toasterMessageElement.getText();
-	}
+//	public String getToasterValue() {
+//		// Wait for the toaster message to be visible and return its text
+//		WebElement toasterMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toaster_Message));
+//		return toasterMessageElement.getText();
+//	}
 }

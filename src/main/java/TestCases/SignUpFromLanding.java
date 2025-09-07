@@ -72,9 +72,9 @@ public class SignUpFromLanding {
 		Thread.sleep(2000);
 
 		// Read data from the first row of the complete sign-up sheet
-		String firstName = completeSignUpSheet.getRow(1).getCell(0).toString();
-		String lastName = completeSignUpSheet.getRow(1).getCell(1).toString();
-		String password = completeSignUpSheet.getRow(1).getCell(2).toString();
+		String firstName = completeSignUpSheet.getRow(2).getCell(0).toString();
+		String lastName = completeSignUpSheet.getRow(2).getCell(1).toString();
+		String password = completeSignUpSheet.getRow(2).getCell(2).toString();
 
 		// Complete the signup process on the activation page
 		Complete_SignUp_Page completeSignUpPage = new Complete_SignUp_Page(driver);
@@ -123,7 +123,7 @@ public class SignUpFromLanding {
 	@Test(priority = 2) //Signup test for duplicate email
 	void SignUpTestDuplicateEmail() throws InterruptedException {
 		// Read data from the first row of the signup sheet
-		String email = signUpSheet.getRow(1).getCell(0).toString();
+		String email = signUpSheet.getRow(2).getCell(2).toString();
 
 		System.out.println(email);
 
