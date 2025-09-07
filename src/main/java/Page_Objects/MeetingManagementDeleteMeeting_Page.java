@@ -15,13 +15,13 @@ public class MeetingManagementDeleteMeeting_Page {
 	// Define locators
 	By sceduler_loc = By.xpath("//div[contains(@class,'cnv-open-box')]");
 	By startTime_loc = By.xpath("//div[@class='cnv-form-group-col-2-select']//div[1]//div[1]//div[1]//div[1]//*[name()='svg']");
-	By selectStartTime_loc = By.xpath("//div[@class='cnv-col-xl-1 cnv-col-lg-1 cnv-col-md-1 cnv-mt-1 ScheduleCreateTimezone_marginAlignment__2XguW']");
+	By selectStartTime_loc = By.xpath("//div[@class='cnv-form-group-col-2-select']//div[1]//div[1]//div[1]//div[1]//*[name()='svg']");
 	By save_loc = By.xpath("//button[@id='save-schedule']");
 	By ok_loc = By.xpath("//button[normalize-space()='Ok']");
 	By toaster_Message = By.xpath("//div[@class='cnv-toast-body']");
 	By meetingManagement_loc = By.xpath("//span[normalize-space()='Meeting Management']");
 	By selectMeeting_loc = By.xpath("//div[@class='cnv-flex-one']");
-	By deleteMeeting_loc = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[4]/*[name()='svg'][1]/*[name()='g'][1]/*[name()='rect'][1]");
+	By deleteMeeting_loc = By.xpath("//div[4]//*[name()='svg']//*[name()='g' and contains(@data-name,'Group 1106')]//*[name()='rect' and contains(@data-name,'Rectangle ')]");
 	By deleteCancel_loc = By.xpath("//button[normalize-space()='Cancel']");
 	By deleteConfirm_loc = By.xpath("//button[normalize-space()='Delete']");
 	
@@ -31,7 +31,7 @@ public class MeetingManagementDeleteMeeting_Page {
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
-	// Method to click Open Sceduler
+	// Method to click Open Scheduler
 	public void clickScheduler() {
 		driver.findElement(sceduler_loc).click();
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -96,6 +96,7 @@ public class MeetingManagementDeleteMeeting_Page {
 
 	public String getToasterValue() {
 		// Wait for the toaster message to be visible and return its text
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		WebElement toasterMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(toaster_Message));
 		return toasterMessageElement.getText();
 	}

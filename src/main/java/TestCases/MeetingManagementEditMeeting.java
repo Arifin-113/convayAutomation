@@ -95,13 +95,13 @@ public class MeetingManagementEditMeeting {
 		WebElement cardContainer = editMeeting.getCardContainer();
 
 		// Scroll down the card container incrementally
-		int scrollAmount = 80; // Adjust this value for smaller steps
-		int scrollDuration = 200; // Delay in milliseconds between scroll steps
+				int scrollAmount = 80; // Adjust this value for smaller steps
+				int scrollDuration = 200; // Delay in milliseconds between scroll steps
 
-		for (int i = 0; i < 5; i++) { // Adjust the number of iterations as needed
-			js.executeScript("arguments[0].scrollBy(0, arguments[1]);", cardContainer, scrollAmount);
-			Thread.sleep(scrollDuration);
-		}
+				for (int i = 0; i < 5; i++) { // Adjust the number of iterations as needed
+					js.executeScript("arguments[0].scrollBy(0, arguments[1]);", cardContainer, scrollAmount);
+					Thread.sleep(scrollDuration);
+				}
 
 		// Click on start time
 		editMeeting.clickStartTime();
@@ -199,6 +199,8 @@ public class MeetingManagementEditMeeting {
 
 		// Verify the toaster message text
 		Assert.assertEquals(getToasterValue, "Successfully updated Kakon Paul Avi's scheduled meeting");
+		
+
 
 	}
 

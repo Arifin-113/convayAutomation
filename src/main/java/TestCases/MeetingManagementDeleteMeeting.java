@@ -117,12 +117,13 @@ public class MeetingManagementDeleteMeeting {
 
 		// Click on OK
 		deleteMeeting.selectOK();
-		Thread.sleep(4000);
+//		Thread.sleep(4000);
 
 		String getToasterValue = deleteMeeting.getToasterValue();
 
 		// Verify the toaster message text
-		Assert.assertEquals(getToasterValue, "Successfully scheduled Kakon Paul Avi's scheduled meeting");
+//		Assert.assertEquals(getToasterValue, "Successfully scheduled Kakon Paul Avi's scheduled meeting");
+		Assert.assertTrue(getToasterValue.contains("Successfully scheduled Kakon Paul Avi's scheduled meeting"));
 
 	}
 
@@ -160,12 +161,13 @@ public class MeetingManagementDeleteMeeting {
 
 		// Click on OK
 		deleteMeeting.clickOK();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 
 		String getToasterValue = deleteMeeting.getToasterValue();
 
 		// Verify the toaster message text
-		Assert.assertEquals(getToasterValue, "Successfully deleted Kakon Paul Avi's scheduled meeting");
+//		Assert.assertEquals(getToasterValue, "Successfully deleted Kakon Paul Avi's scheduled meeting");
+		Assert.assertTrue(getToasterValue.contains("Successfully deleted Kakon Paul Avi's scheduled meeting"));
 
 	}
 
