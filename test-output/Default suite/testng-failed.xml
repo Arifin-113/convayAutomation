@@ -3,16 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.SignUpFromLanding">
+      <class name="TestCases.CopyInvitationInstant">
         <methods>
-          <include name="setup"/>
-          <include name="afterMethod1"/>
           <include name="teardown"/>
-          <include name="SignUpTestDuplicateEmail"/>
-          <include name="navigateToSignUpPage"/>
-          <include name="afterMethod2"/>
+          <include name="setup"/>
+          <include name="captureFailureScreenshot1"/>
+          <include name="copyInvitation"/>
+          <include name="navigateToHomePage2"/>
         </methods>
-      </class> <!-- TestCases.SignUpFromLanding -->
+      </class> <!-- TestCases.CopyInvitationInstant -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

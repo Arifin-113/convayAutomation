@@ -14,7 +14,7 @@ public class CopyInvitationInstant_Page {
 
 	// Define locators
 	By copy = By.xpath("//*[name()='g' and contains(@data-name,'Group 4930')]//*[name()='rect' and contains(@data-name,'Rectangle ')]");
-	By btn_acceptCookies = By.xpath("//button[@data-cky-tag='accept-button']");
+//	By btn_acceptCookies = By.xpath("//button[@data-cky-tag='accept-button']");
 	By toaster_Message = By.xpath("//div[@class='cnv-toast-body']");
 	
 
@@ -32,7 +32,7 @@ public class CopyInvitationInstant_Page {
 
 	// Method to click on Accept Cookies
 	public void clickAccept() {
-		driver.findElement(btn_acceptCookies).click();
+//		driver.findElement(btn_acceptCookies).click();
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 
