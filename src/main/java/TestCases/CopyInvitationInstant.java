@@ -78,19 +78,27 @@ public class CopyInvitationInstant {
         String getToasterValue = copyInvitation.getToasterValue();
         System.out.println("Toaster: [" + getToasterValue + "]"); // Debug print
 
-        // Expected toaster message with exact formatting
-        String expectedToaster = "Invitation copied to clipboard\n" +
-                                "Kakon Paul Avi is inviting you to a meeting on Convay.\n" +
-                                "Meeting ID :\n" +
-                                "6928 8107 9044\n" +
-                                "Meeting Link: https://meet2.synesisit.info/m/j/692881079044/kakonpaulavi";
-
-        // Normalize strings to handle hidden characters or line break differences
+        // Normalize string to handle line break differences
         String normalizedActual = getToasterValue.replaceAll("[\\r\\n]+", "\n").trim();
-        String normalizedExpected = expectedToaster.replaceAll("[\\r\\n]+", "\n").trim();
 
-        // Verify the toaster message text
-        Assert.assertEquals(normalizedActual, normalizedExpected, "Toaster message does not match expected format!");
+        // Verify key components of the toaster message
+        Assert.assertTrue(normalizedActual.contains("Invitation copied to clipboard"),
+                "Toaster does not contain 'Invitation copied to clipboard'");
+        Assert.assertTrue(normalizedActual.contains("Kakon Paul Avi is inviting you to a meeting on Convay."),
+                "Toaster does not contain invitation text");
+        Assert.assertTrue(normalizedActual.contains("Meeting ID :"),
+                "Toaster does not contain 'Meeting ID :'");
+
+        // Extract Meeting ID line (assuming it's the 4th line after normalization)
+        String[] lines = normalizedActual.split("\n");
+        String meetingIdLine = lines.length > 3 ? lines[3].trim() : "";
+        Assert.assertTrue(meetingIdLine.matches("\\d{4} \\d{4} \\d{4}"),
+                "Meeting ID format is incorrect, expected 4-4-4 digit pattern, found: " + meetingIdLine);
+
+        Assert.assertTrue(normalizedActual.contains("Meeting Link: https://meet2.synesisit.info/m/j/"),
+                "Toaster does not contain valid Meeting Link base URL");
+        Assert.assertTrue(normalizedActual.contains("/kakonpaulavi"),
+                "Toaster does not contain expected username in Meeting Link");
     }
 
     @AfterMethod

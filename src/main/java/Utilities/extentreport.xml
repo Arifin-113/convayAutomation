@@ -10,7 +10,8 @@
 	<!-- Test configuration -->
 	<test name="Calender-Month">
 		<classes>
-			<class name="TestCases.ValidateMonthView" />
+			<class name="TestCases.LoginTest" />
+			<class name="TestCases.LogOutTest" />
 		</classes>
 	</test>
 

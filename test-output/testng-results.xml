@@ -1,40 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-08T08:57:46 BDT" name="Default suite" finished-at="2025-09-08T08:58:06 BDT" duration-ms="19272">
+  <suite started-at="2025-09-08T16:28:11 BDT" name="Default suite" finished-at="2025-09-08T16:28:53 BDT" duration-ms="41807">
     <groups>
     </groups>
-    <test started-at="2025-09-08T08:57:46 BDT" name="Default test" finished-at="2025-09-08T08:58:06 BDT" duration-ms="19272">
-      <class name="TestCases.CopyInvitationInstant">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.CopyInvitationInstant@48bb62]" started-at="2025-09-08T08:57:46 BDT" name="setup" finished-at="2025-09-08T08:57:48 BDT" duration-ms="2141" status="PASS">
+    <test started-at="2025-09-08T16:28:11 BDT" name="Default test" finished-at="2025-09-08T16:28:53 BDT" duration-ms="41807">
+      <class name="TestCases.CopyInvitationCalendar">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:11 BDT" name="setup" finished-at="2025-09-08T16:28:13 BDT" duration-ms="2020" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="navigateToHomePage2()[pri:0, instance:TestCases.CopyInvitationInstant@48bb62]" started-at="2025-09-08T08:57:48 BDT" name="navigateToHomePage2" finished-at="2025-09-08T08:58:01 BDT" duration-ms="12328" status="PASS">
+        <test-method is-config="true" signature="navigateToHomePage2()[pri:0, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:13 BDT" name="navigateToHomePage2" finished-at="2025-09-08T16:28:22 BDT" duration-ms="8719" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToHomePage2 -->
-        <test-method signature="copyInvitation()[pri:1, instance:TestCases.CopyInvitationInstant@48bb62]" started-at="2025-09-08T08:58:01 BDT" name="copyInvitation" finished-at="2025-09-08T08:58:05 BDT" duration-ms="4234" status="PASS">
+        <test-method signature="SaveSchedule()[pri:1, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:22 BDT" name="SaveSchedule" finished-at="2025-09-08T16:28:35 BDT" duration-ms="13445" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- copyInvitation -->
-        <test-method is-config="true" signature="captureFailureScreenshot1(org.testng.ITestResult)[pri:0, instance:TestCases.CopyInvitationInstant@48bb62]" started-at="2025-09-08T08:58:05 BDT" name="captureFailureScreenshot1" finished-at="2025-09-08T08:58:05 BDT" duration-ms="2" status="PASS">
+        </test-method> <!-- SaveSchedule -->
+        <test-method is-config="true" signature="captureFailureScreenshot1(org.testng.ITestResult)[pri:0, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:35 BDT" name="captureFailureScreenshot1" finished-at="2025-09-08T16:28:35 BDT" duration-ms="3" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=copyInvitation status=SUCCESS method=CopyInvitationInstant.copyInvitation()[pri:1, instance:TestCases.CopyInvitationInstant@48bb62] output={null}]]]>
+                <![CDATA[[TestResult name=SaveSchedule status=SUCCESS method=CopyInvitationCalendar.SaveSchedule()[pri:1, instance:TestCases.CopyInvitationCalendar@353352b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureFailureScreenshot1 -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:TestCases.CopyInvitationInstant@48bb62]" started-at="2025-09-08T08:58:05 BDT" name="teardown" finished-at="2025-09-08T08:58:06 BDT" duration-ms="526" status="PASS">
+        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:35 BDT" name="captureFailureScreenshot2" finished-at="2025-09-08T16:28:35 BDT" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=SaveSchedule status=SUCCESS method=CopyInvitationCalendar.SaveSchedule()[pri:1, instance:TestCases.CopyInvitationCalendar@353352b6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- captureFailureScreenshot2 -->
+        <test-method is-config="true" signature="navigateToHomePage2()[pri:0, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:35 BDT" name="navigateToHomePage2" finished-at="2025-09-08T16:28:42 BDT" duration-ms="6773" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage2 -->
+        <test-method signature="copyInvitation()[pri:2, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:42 BDT" name="copyInvitation" finished-at="2025-09-08T16:28:53 BDT" duration-ms="10579" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- copyInvitation -->
+        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:53 BDT" name="captureFailureScreenshot2" finished-at="2025-09-08T16:28:53 BDT" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyInvitation status=SUCCESS method=CopyInvitationCalendar.copyInvitation()[pri:2, instance:TestCases.CopyInvitationCalendar@353352b6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- captureFailureScreenshot2 -->
+        <test-method is-config="true" signature="captureFailureScreenshot1(org.testng.ITestResult)[pri:0, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:53 BDT" name="captureFailureScreenshot1" finished-at="2025-09-08T16:28:53 BDT" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=copyInvitation status=SUCCESS method=CopyInvitationCalendar.copyInvitation()[pri:2, instance:TestCases.CopyInvitationCalendar@353352b6] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- captureFailureScreenshot1 -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:TestCases.CopyInvitationCalendar@353352b6]" started-at="2025-09-08T16:28:53 BDT" name="teardown" finished-at="2025-09-08T16:28:53 BDT" duration-ms="224" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- TestCases.CopyInvitationInstant -->
+      </class> <!-- TestCases.CopyInvitationCalendar -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -29,8 +29,8 @@ public class MeetingManagementEditMeeting_Page {
 //    By selectStartTime_loc = By.xpath("//div[@class='cnv-form-group-col-2-select']//div[1]//div[1]//div[1]//div[1]//*[name()='svg']");
     
 //    By selectStartTime_loc = By.xpath("//ul[contains(@class,'timepicker') or contains(@class,'dropdown') or contains(@class,'menu')]//li[not(contains(@class,'disabled'))][1]");
-    
     By save_loc = By.xpath("//button[@id='save-schedule']");
+//    By save_loc = By.xpath("//button[@id='save-schedule']");
     By cancel_loc = By.xpath("//button[@class='cnv-btn cnv-btn-cancel-new cnv-mr-3']");
     By ok_loc = By.xpath("//button[contains(text(),'Ok')]");
     By toaster_Message = By.xpath("//div[@class='cnv-toast-body']");

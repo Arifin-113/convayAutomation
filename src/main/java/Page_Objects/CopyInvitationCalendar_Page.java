@@ -15,10 +15,18 @@ public class CopyInvitationCalendar_Page {
 	// Define locators
 	By sceduler_loc = By.xpath("//div[contains(@class,'cnv-open-box')]");
 	By save_loc = By.xpath("//button[@id='save-schedule']");
-	By cancel_loc = By.xpath("//button[@id='cancel-schedule']");
+	
+	
+	
+	
 	By ok_loc = By.xpath("//button[normalize-space()='Ok']");
+	By cancel_loc = By.xpath("//button[@id='cancel-schedule']");
+	By cancelSc_loc = By.xpath("//button[@class='cnv-btn cnv-btn-save']");
 	By meeting_loc = By.xpath("//div[contains(@class,'cnv-calendar-event-meta')]");
-	By copy_loc = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[2]/div[25]/div[1]/div[1]/div[2]/div[1]/div[2]/*[name()='svg'][1]");
+	
+//	By meeting_loc = By.xpath("//div class="cnv-alert-content']");
+	
+	By copy_loc = By.xpath("//div[@class='cnv-calendar-event-actions undefined']//*[name()='svg']");
 	By toaster_Message = By.xpath("//div[@class='cnv-toast-body']");
 
 	// Constructor
@@ -55,6 +63,12 @@ public class CopyInvitationCalendar_Page {
 		driver.findElement(cancel_loc).click();
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
+	
+	// Method to click on cancelSc button 
+		public void clickCancelSc() {
+			driver.findElement(cancelSc_loc).click();
+			this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		}
 
 	// Method to click on Meeting
 	public void clickMeeting() {
