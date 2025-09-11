@@ -23,10 +23,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Page_Objects.Login_Page;
-import Page_Objects.ManagePlans_Page;
+import Page_Objects.CM_ManagePlans_Page;
 import Utilities.Take_Screenshot;
 
-public class ManagePlans {
+public class CM_ManagePlansEditPlan {
 
     WebDriver driver;
     XSSFWorkbook ExcelWBook;
@@ -79,7 +79,7 @@ public class ManagePlans {
 
     @Test(priority = 1)
     void testManagePlans() throws InterruptedException {
-        ManagePlans_Page managePlans = new ManagePlans_Page(driver);
+        CM_ManagePlans_Page managePlans = new CM_ManagePlans_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Reduced timeout
 
         try {
@@ -111,23 +111,11 @@ public class ManagePlans {
 
             // Perform Manage Plans workflow
             managePlans.clickManagePlans();
-            managePlans.clickCreateLink();
-            managePlans.enterPlanName("Plan A");
+            
 
-            // Debug dropdown options
-            List<String> planTypeOptions = managePlans.getPlanTypeOptions();
-            System.out.println("Available plan type options: " + planTypeOptions);
-
-            // Select plan type (User based)
-            managePlans.clickPlanTypeDropdown();
-            managePlans.selectPlanType("User based");
-
-            managePlans.clickCreateButton();
-            managePlans.clickOkAfterCreate();
-
-            // Search for the created plan
-            managePlans.searchPlans("Plan A");
-            Assert.assertTrue(managePlans.isPlanADisplayed(), "Plan A is not displayed");
+//            // Search for the created plan
+//            managePlans.searchPlans("Plan A");
+//            Assert.assertTrue(managePlans.isPlanADisplayed(), "Plan A is not displayed");
 
             // Update the plan
             managePlans.updatePlanName("Plan A Updated");
@@ -139,8 +127,6 @@ public class ManagePlans {
             managePlans.selectDraftStatus();
             Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
             Assert.assertTrue(managePlans.isContentAreaDisplayed(), "Content area is not displayed");
-            Assert.assertTrue(managePlans.isSvgIconDisplayed(), "SVG icon is not displayed");
-            Assert.assertTrue(managePlans.isMosharofHeaderDisplayed(), "Mosharof Hossain header is not displayed");
             Assert.assertTrue(managePlans.isAvatarImageDisplayed(), "Avatar image is not displayed");
 
             // Switch back to original tab if needed

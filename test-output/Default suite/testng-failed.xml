@@ -3,7 +3,7 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.ManagePlans">
+      <class name="TestCases.CM_ManagePlansEditPlan">
         <methods>
           <include name="testManagePlans"/>
           <include name="captureFailureScreenshot"/>
@@ -11,7 +11,7 @@
           <include name="teardown"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- TestCases.ManagePlans -->
+      </class> <!-- TestCases.CM_ManagePlansEditPlan -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

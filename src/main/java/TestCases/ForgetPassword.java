@@ -51,8 +51,8 @@ public class ForgetPassword {
 	void navigateToForgetPasswordPage() {
 		driver.get("https://meet2.synesisit.info/sign-in");
 	}
-
-	/*@Test(priority = 1) // Test case for Forget Password functionality
+/*
+	@Test(priority = 1) // Test case for Forget Password functionality
 	void forgetPasswordTest1() throws InterruptedException {
 		ForgetPassword_Page forgetPasswordPage = new ForgetPassword_Page(driver);
 
@@ -74,7 +74,7 @@ public class ForgetPassword {
 			Take_Screenshot.TakeScreenshot(driver, result.getName());
 		}
 	}
-
+*/
 	@Test(priority = 2) // To check the validation with an unregistered email
 	void forgetPasswordTest2() throws InterruptedException {
 		ForgetPassword_Page forgetPasswordPage = new ForgetPassword_Page(driver);
@@ -108,7 +108,7 @@ public class ForgetPassword {
 			Take_Screenshot.TakeScreenshot(driver, result.getName());
 		}
 	}
-
+/*
 	@Test(priority = 3) // To check email has been sent perfectly after requesting forget password
 	void forgetPasswordTest3() throws InterruptedException {
 		ForgetPassword_Page forgetPasswordPage = new ForgetPassword_Page(driver);
@@ -173,8 +173,8 @@ public class ForgetPassword {
 		if (ITestResult.FAILURE == result.getStatus()) {
 			Take_Screenshot.TakeScreenshot(driver, result.getName());
 		}
-	}*/
-
+	}
+*/
 	@Test(priority = 5) // To check forget password
 	void forgetPasswordTest5() throws InterruptedException {
 		ForgetPassword_Page forgetPasswordPage = new ForgetPassword_Page(driver);
