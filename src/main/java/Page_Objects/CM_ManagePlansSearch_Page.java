@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public class CM_ManagePlansEditPlan_Page {
+public class CM_ManagePlansSearch_Page {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -20,12 +20,10 @@ public class CM_ManagePlansEditPlan_Page {
     By input_search_plans = By.xpath("//input[@placeholder='Search for plans']");
     By div_plan_a = By.xpath("//div[contains(text(), 'Plan A')]");
     By div_plan_info = By.xpath("//h3[contains(text(), 'Plan')]");
-    By edit_btn = By.xpath("//*[@id=\"root\"]/div/div[3]/div/div[1]/div[2]/button[2]");
-    By select_plan_typeChooseOrg = By.xpath("//*[@id='root']/div/div[3]/div/form/div/div/div/div[2]/div[2]/select/option[2]");
+    /* 
     By btn_update = By.xpath("//button[normalize-space()='Update']");
     By btn_ok2 = By.xpath("//button[contains(text(), 'Ok')]");
-    By edit_btn2 = By.xpath("//*[@id=\"root\"]/div/div[3]/div[2]/div[3]/div/table/tbody/tr[2]/td[6]/div/button[1]");
-    /*    
+     
     By btn_filters = By.xpath("//button[normalize-space()='Filters']");
     By header_status = By.xpath("//h4[normalize-space()='Status']");
     By label_draft = By.xpath("//label[normalize-space()='Draft']");
@@ -33,7 +31,7 @@ public class CM_ManagePlansEditPlan_Page {
     By img_avatar = By.xpath("//div[@class='avatar']//img[@alt='Avatar']");
 */
     // Constructor
-    public CM_ManagePlansEditPlan_Page(WebDriver driver) {
+    public CM_ManagePlansSearch_Page(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased default timeout
     }
@@ -74,9 +72,8 @@ public class CM_ManagePlansEditPlan_Page {
     public boolean isPlanADisplayed() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(div_plan_a)).isDisplayed();
     }
-    
-    
- // Method to click Plan A to open edit form
+
+    // Method to click Plan A to open edit form
     public void clickPlanA() {
         WebElement planA = wait.until(ExpectedConditions.elementToBeClickable(div_plan_a));
         planA.click();
@@ -87,7 +84,6 @@ public class CM_ManagePlansEditPlan_Page {
             e.printStackTrace();
         }
     }
-
 
     // Method to verify Plan Info header
     public boolean isPlanInfoDisplayed() {
@@ -100,44 +96,6 @@ public class CM_ManagePlansEditPlan_Page {
             return false;
         }
     }
-    
-    
-    
-    
- // Method to Edit Plan A to open edit form
-    public void editButton() {
-        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(edit_btn));
-        editButton.click();
-        // Add delay to ensure edit form loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
- // Method to Edit Plan A to open edit form
-    public void editButton2() {
-        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(edit_btn));
-        editButton.click();
-        // Add delay to ensure edit form loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
- // Method to choose org
-    public void typeChooseOrg() {
-        WebElement typeChooseOrg = wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeChooseOrg));
-        typeChooseOrg.click();
-        // Add delay to ensure edit form loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    
 
     // Method to update Plan Name
     public void updatePlanName(String updatedPlanName) {
@@ -158,7 +116,7 @@ public class CM_ManagePlansEditPlan_Page {
             planNameInput.sendKeys(Keys.ENTER); // Press Enter key
         }
     }
-
+    /*
     // Method to click Update button
     public void clickUpdateButton() {
         wait.until(ExpectedConditions.elementToBeClickable(btn_update)).click();
@@ -168,5 +126,30 @@ public class CM_ManagePlansEditPlan_Page {
     public void clickOkAfterUpdate() {
         wait.until(ExpectedConditions.elementToBeClickable(btn_ok2)).click();
     }
+   
+    // Method to click Filters button
+    public void clickFiltersButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(btn_filters)).click();
+    }
 
+    // Method to verify Status header
+    public boolean isStatusHeaderDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(header_status)).isDisplayed();
+    }
+
+    // Method to select Draft status
+    public void selectDraftStatus() {
+        wait.until(ExpectedConditions.elementToBeClickable(label_draft)).click();
+    }
+
+    // Method to verify Content Area
+    public boolean isContentAreaDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(div_content_area)).isDisplayed();
+    }
+
+    // Method to verify Avatar image
+    public boolean isAvatarImageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(img_avatar)).isDisplayed();
+    }
+    */
 }

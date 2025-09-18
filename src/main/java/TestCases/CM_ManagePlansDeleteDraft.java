@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,10 +24,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Page_Objects.Login_Page;
-import Page_Objects.CM_ManagePlansCreateNewPlan_Page;
+import Page_Objects.CM_ManagePlansDeleteDraft_Page;
 import Utilities.Take_Screenshot;
 
-public class CM_ManagePlansCreateNewPlan {
+public class CM_ManagePlansDeleteDraft {
 
     WebDriver driver;
     XSSFWorkbook ExcelWBook;
@@ -79,7 +80,7 @@ public class CM_ManagePlansCreateNewPlan {
 
     @Test(priority = 1)
     void testManagePlans() throws InterruptedException {
-    	CM_ManagePlansCreateNewPlan_Page managePlans = new CM_ManagePlansCreateNewPlan_Page(driver);
+    	CM_ManagePlansDeleteDraft_Page managePlans = new CM_ManagePlansDeleteDraft_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Reduced timeout
 
         try {
@@ -114,7 +115,7 @@ public class CM_ManagePlansCreateNewPlan {
             Thread.sleep(2000);
             managePlans.clickCreateLink();
             Thread.sleep(2000);
-            managePlans.enterPlanName("Plan A");
+            managePlans.enterPlanName("Plan Draft");
             Thread.sleep(2000);
 
             // Debug dropdown options
@@ -127,9 +128,23 @@ public class CM_ManagePlansCreateNewPlan {
             managePlans.selectPlanType("User based");
             Thread.sleep(2000);
 
-            managePlans.clickCreateButton();
+            managePlans.clickDraftButton();
             Thread.sleep(2000);
-            managePlans.clickOkAfterCreate();
+            managePlans.clickOkAfterDraft();
+            Thread.sleep(2000);
+         // Apply filters and verify
+            managePlans.clickFiltersButton();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Filters']")));
+            Thread.sleep(2000);
+
+            managePlans.clickFiltersButton2();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h4[normalize-space()='Status']//span//*[name()='svg']")));
+            Thread.sleep(2000);
+
+            managePlans.selectDraftStatus();
+            Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
+            Thread.sleep(4000);
+            managePlans.clickDelDraft();
             Thread.sleep(2000);
 
             

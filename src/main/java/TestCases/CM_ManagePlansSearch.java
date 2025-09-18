@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -23,10 +23,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Page_Objects.Login_Page;
-import Page_Objects.CM_ManagePlansCreateNewPlan_Page;
+import Page_Objects.CM_ManagePlansSearch_Page;
 import Utilities.Take_Screenshot;
 
-public class CM_ManagePlansCreateNewPlan {
+public class CM_ManagePlansSearch {
 
     WebDriver driver;
     XSSFWorkbook ExcelWBook;
@@ -79,15 +79,17 @@ public class CM_ManagePlansCreateNewPlan {
 
     @Test(priority = 1)
     void testManagePlans() throws InterruptedException {
-    	CM_ManagePlansCreateNewPlan_Page managePlans = new CM_ManagePlansCreateNewPlan_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Reduced timeout
+        CM_ManagePlansSearch_Page managePlans = new CM_ManagePlansSearch_Page(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
 
         try {
             // Navigate to home page
             driver.get("https://meet2.synesisit.info/home");
+            Thread.sleep(2000); // Wait for page to load
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
+            System.out.println("Original window handle: " + originalWindow);
 
             // Click Manage Organization link (opens new tab)
             managePlans.clickManageOrg();
@@ -96,44 +98,56 @@ public class CM_ManagePlansCreateNewPlan {
             wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
             // Switch to the new tab
-            for (String windowHandle : driver.getWindowHandles()) {
-                if (!originalWindow.contentEquals(windowHandle)) {
+            Set<String> windowHandles = driver.getWindowHandles();
+            System.out.println("Window handles: " + windowHandles);
+            for (String windowHandle : windowHandles) {
+                if (!originalWindow.equals(windowHandle)) {
                     driver.switchTo().window(windowHandle);
+                    System.out.println("Switched to new tab: " + windowHandle);
                     break;
                 }
             }
 
             // Verify new tab URL
             String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl); // Debug print (syso + Ctrl + Space in Eclipse)
+            System.out.println("New tab URL: " + newTabUrl); // Debug print
             Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
                     "New tab URL does not match expected: https://meet2.synesisit.info:85/");
 
             // Perform Manage Plans workflow
             managePlans.clickManagePlans();
             Thread.sleep(2000);
-            managePlans.clickCreateLink();
+
+            // Search for the created plan and press Enter
+            managePlans.searchPlans("Plan A");
             Thread.sleep(2000);
-            managePlans.enterPlanName("Plan A");
+            Assert.assertTrue(managePlans.isPlanADisplayed(), "Plan A is not displayed");
+
+            // Click Plan A to open edit form
+            managePlans.clickPlanA();
             Thread.sleep(2000);
 
-            // Debug dropdown options
-            List<String> planTypeOptions = managePlans.getPlanTypeOptions();
-            System.out.println("Available plan type options: " + planTypeOptions);
-
-            // Select plan type (User based)
-            managePlans.clickPlanTypeDropdown();
+            // Assert Plan Info header
+            Assert.assertTrue(managePlans.isPlanInfoDisplayed(), "Plan Info header is not displayed");
             Thread.sleep(2000);
-            managePlans.selectPlanType("User based");
+/*
+            // Update the plan
+            managePlans.updatePlanName("Plan A Updated");
             Thread.sleep(2000);
 
-            managePlans.clickCreateButton();
+            // If Enter key doesn't submit the update, click Update button
+            managePlans.clickUpdateButton();
             Thread.sleep(2000);
-            managePlans.clickOkAfterCreate();
+            managePlans.clickOkAfterUpdate();
             Thread.sleep(2000);
 
-            
-
+            // Apply filters and verify
+            managePlans.clickFiltersButton();
+            managePlans.selectDraftStatus();
+            Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
+            Assert.assertTrue(managePlans.isContentAreaDisplayed(), "Content area is not displayed");
+            Assert.assertTrue(managePlans.isAvatarImageDisplayed(), "Avatar image is not displayed");
+*/
             // Switch back to original tab if needed
             driver.switchTo().window(originalWindow);
 

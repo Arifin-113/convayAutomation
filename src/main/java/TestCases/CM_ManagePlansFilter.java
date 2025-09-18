@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,10 +24,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Page_Objects.Login_Page;
-import Page_Objects.CM_ManagePlansEditPlan_Page;
+import Page_Objects.CM_ManagePlansFilter_Page;
 import Utilities.Take_Screenshot;
 
-public class CM_ManagePlansEditPlan {
+public class CM_ManagePlansFilter {
 
     WebDriver driver;
     XSSFWorkbook ExcelWBook;
@@ -59,7 +60,7 @@ public class CM_ManagePlansEditPlan {
     }
 
     @BeforeMethod
-    void navigateToHomePage() throws InterruptedException {
+    void navigateToHomePage() {
         // Login before managing plans
         driver.get("https://meet2.synesisit.info/sign-in");
 
@@ -74,18 +75,21 @@ public class CM_ManagePlansEditPlan {
         lp.setUserName(username);
         lp.setPassword(password);
         lp.clickLogin();
-        Thread.sleep(4000); // Wait for login to complete
+
+        // Wait for login to complete
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.urlContains("home"));
     }
-/*
+
     @Test(priority = 1)
-    void testManagePlans() throws InterruptedException {
-    	CM_ManagePlansEditPlan_Page managePlans = new CM_ManagePlansEditPlan_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
+    void testManagePlans() {
+        CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
 
         try {
             // Navigate to home page
             driver.get("https://meet2.synesisit.info/home");
-            Thread.sleep(2000); // Wait for page to load
+            wait.until(ExpectedConditions.urlContains("home"));
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
@@ -93,6 +97,7 @@ public class CM_ManagePlansEditPlan {
 
             // Click Manage Organization link (opens new tab)
             managePlans.clickManageOrg();
+            Thread.sleep(2000);
 
             // Wait for new tab to open
             wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -108,43 +113,162 @@ public class CM_ManagePlansEditPlan {
                 }
             }
 
+            // Wait for the new tab to fully load
+            wait.until(ExpectedConditions.urlContains("https://meet2.synesisit.info:85/"));
+
             // Verify new tab URL
             String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl); // Debug print
+            System.out.println("New tab URL: " + newTabUrl);
             Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
                     "New tab URL does not match expected: https://meet2.synesisit.info:85/");
 
             // Perform Manage Plans workflow
             managePlans.clickManagePlans();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Manage Plans']")));
             Thread.sleep(2000);
 
-            // Search for the created plan and press Enter
-            managePlans.searchPlans("Plan A");
-            Thread.sleep(2000);
-            Assert.assertTrue(managePlans.isPlanADisplayed(), "Plan A is not displayed");
-
-            // Click Plan A to open edit form
-            managePlans.clickPlanA();
+            // Apply filters and verify
+            managePlans.clickFiltersButton();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Filters']")));
             Thread.sleep(2000);
 
-            // Edit Button Locator
-            managePlans.editButton();
-            Thread.sleep(2000);
-            // typeChooseOrg
-            managePlans.typeChooseOrg();
-            Thread.sleep(2000);
-            // Update the plan
-            managePlans.updatePlanName("Plan A Updated");
+            managePlans.clickFiltersButton2();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h4[normalize-space()='Status']//span//*[name()='svg']")));
             Thread.sleep(2000);
 
-            // If Enter key doesn't submit the update, click Update button
-            managePlans.clickUpdateButton();
-            Thread.sleep(2000);
-            managePlans.clickOkAfterUpdate();
+            managePlans.selectDraftStatus();
+            Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
             Thread.sleep(2000);
 
-            // Switch back to original tab if needed
-            driver.switchTo().window(originalWindow);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("Test failed due to exception: " + e.getMessage());
+        }
+    }
+
+    @Test(priority = 2)
+    void testManagePlans2() {
+        CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
+
+        try {
+            // Navigate to home page
+            driver.get("https://meet2.synesisit.info/home");
+            wait.until(ExpectedConditions.urlContains("home"));
+
+            // Store the original window handle
+            String originalWindow = driver.getWindowHandle();
+            System.out.println("Original window handle: " + originalWindow);
+
+            // Click Manage Organization link (opens new tab)
+            managePlans.clickManageOrg();
+            Thread.sleep(2000);
+
+            // Wait for new tab to open
+            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+            // Switch to the new tab
+            Set<String> windowHandles = driver.getWindowHandles();
+            System.out.println("Window handles: " + windowHandles);
+            for (String windowHandle : windowHandles) {
+                if (!originalWindow.equals(windowHandle)) {
+                    driver.switchTo().window(windowHandle);
+                    System.out.println("Switched to new tab: " + windowHandle);
+                    break;
+                }
+            }
+
+            // Wait for the new tab to fully load
+            wait.until(ExpectedConditions.urlContains("https://meet2.synesisit.info:85/"));
+
+            // Verify new tab URL
+            String newTabUrl = driver.getCurrentUrl();
+            System.out.println("New tab URL: " + newTabUrl);
+            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
+                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
+
+            // Perform Manage Plans workflow
+            managePlans.clickManagePlans();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Manage Plans']")));
+            Thread.sleep(2000);
+
+            // Apply filters and verify
+            managePlans.clickFiltersButton();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Filters']")));
+            Thread.sleep(2000);
+
+            managePlans.clickFiltersButton2();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h4[normalize-space()='Status']//span//*[name()='svg']")));
+            Thread.sleep(2000);
+
+            managePlans.selectInactiveStatus();
+            Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
+            Thread.sleep(2000);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("Test failed due to exception: " + e.getMessage());
+        }
+    }
+
+    @Test(priority = 3)
+    void testManagePlans3() {
+        CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
+
+        try {
+            // Navigate to home page
+            driver.get("https://meet2.synesisit.info/home");
+            wait.until(ExpectedConditions.urlContains("home"));
+
+            // Store the original window handle
+            String originalWindow = driver.getWindowHandle();
+            System.out.println("Original window handle: " + originalWindow);
+
+            // Click Manage Organization link (opens new tab)
+            managePlans.clickManageOrg();
+            Thread.sleep(2000);
+
+            // Wait for new tab to open
+            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+            // Switch to the new tab
+            Set<String> windowHandles = driver.getWindowHandles();
+            System.out.println("Window handles: " + windowHandles);
+            for (String windowHandle : windowHandles) {
+                if (!originalWindow.equals(windowHandle)) {
+                    driver.switchTo().window(windowHandle);
+                    System.out.println("Switched to new tab: " + windowHandle);
+                    break;
+                }
+            }
+
+            // Wait for the new tab to fully load
+            wait.until(ExpectedConditions.urlContains("https://meet2.synesisit.info:85/"));
+
+            // Verify new tab URL
+            String newTabUrl = driver.getCurrentUrl();
+            System.out.println("New tab URL: " + newTabUrl);
+            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
+                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
+
+            // Perform Manage Plans workflow
+            managePlans.clickManagePlans();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Manage Plans']")));
+            Thread.sleep(2000);
+
+            // Apply filters and verify
+            managePlans.clickFiltersButton();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Filters']")));
+            Thread.sleep(2000);
+
+            managePlans.clickFiltersButton2();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h4[normalize-space()='Status']//span//*[name()='svg']")));
+            Thread.sleep(2000);
+
+            managePlans.selectActiveStatus();
+            Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
+            Thread.sleep(2000);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,90 +278,24 @@ public class CM_ManagePlansEditPlan {
 
     @AfterMethod
     public void captureFailureScreenshot(ITestResult result) throws IOException {
+        // Capture screenshot on failure
         if (ITestResult.FAILURE == result.getStatus()) {
             Take_Screenshot.TakeScreenshot(driver, result.getName());
         }
-    }
-*/    
-    @Test(priority = 2)
-    void testManagePlans2() throws InterruptedException {
-    	CM_ManagePlansEditPlan_Page managePlans = new CM_ManagePlansEditPlan_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
 
+        // Reset browser state: close all tabs except the original
         try {
-            // Navigate to home page
-            driver.get("https://meet2.synesisit.info/home");
-            Thread.sleep(2000); // Wait for page to load
-
-            // Store the original window handle
             String originalWindow = driver.getWindowHandle();
-            System.out.println("Original window handle: " + originalWindow);
-
-            // Click Manage Organization link (opens new tab)
-            managePlans.clickManageOrg();
-
-            // Wait for new tab to open
-            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-
-            // Switch to the new tab
-            Set<String> windowHandles = driver.getWindowHandles();
-            System.out.println("Window handles: " + windowHandles);
-            for (String windowHandle : windowHandles) {
-                if (!originalWindow.equals(windowHandle)) {
+            for (String windowHandle : driver.getWindowHandles()) {
+                if (!windowHandle.equals(originalWindow)) {
                     driver.switchTo().window(windowHandle);
-                    System.out.println("Switched to new tab: " + windowHandle);
-                    break;
+                    driver.close();
                 }
             }
-
-            // Verify new tab URL
-            String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl); // Debug print
-            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
-                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
-
-            // Perform Manage Plans workflow
-            managePlans.clickManagePlans();
-            Thread.sleep(2000);
-
-            // Search for the created plan and press Enter
-            managePlans.searchPlans("Plan A");
-            Thread.sleep(2000);
-            Assert.assertTrue(managePlans.isPlanADisplayed(), "Plan A is not displayed");
-
-            // Click Plan A to open edit form
-            managePlans.clickPlanA();
-            Thread.sleep(2000);
-
-            // Edit Button Locator
-            managePlans.editButton2();
-            Thread.sleep(2000);
-            // typeChooseOrg
-            managePlans.typeChooseOrg();
-            Thread.sleep(2000);
-            // Update the plan
-            managePlans.updatePlanName("Plan A Updated");
-            Thread.sleep(2000);
-
-            // If Enter key doesn't submit the update, click Update button
-            managePlans.clickUpdateButton();
-            Thread.sleep(2000);
-            managePlans.clickOkAfterUpdate();
-            Thread.sleep(2000);
-
-            // Switch back to original tab if needed
             driver.switchTo().window(originalWindow);
-
+            driver.get("about:blank"); // Navigate to a blank page to reset state
         } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail("Test failed due to exception: " + e.getMessage());
-        }
-    }
-
-    @AfterMethod
-    public void captureFailureScreenshot2(ITestResult result) throws IOException {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            Take_Screenshot.TakeScreenshot(driver, result.getName());
+            System.out.println("Failed to reset browser state: " + e.getMessage());
         }
     }
 

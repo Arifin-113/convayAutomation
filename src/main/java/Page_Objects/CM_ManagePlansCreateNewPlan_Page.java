@@ -17,7 +17,7 @@ public class CM_ManagePlansCreateNewPlan_Page {
     WebDriverWait wait;
 
     // Define locators
-    By manage_org = By.xpath("//li[5]//a[1]//span[1]");
+    By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
     By manage_plans = By.xpath("//span[normalize-space()='Manage Plans']");
     By link_create = By.xpath("//a[contains(text(),'Create')]");
     By input_plan_name = By.cssSelector("input[placeholder='Enter Plan Name']");

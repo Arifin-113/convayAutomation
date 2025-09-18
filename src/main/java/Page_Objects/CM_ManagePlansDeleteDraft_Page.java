@@ -11,32 +11,34 @@ import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CM_ManagePlans_Page {
+public class CM_ManagePlansDeleteDraft_Page {
 
     WebDriver driver;
     WebDriverWait wait;
 
     // Define locators
-    By manage_org = By.xpath("//li[5]//a[1]//span[1]");
+    By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
     By manage_plans = By.xpath("//span[normalize-space()='Manage Plans']");
     By link_create = By.xpath("//a[contains(text(),'Create')]");
     By input_plan_name = By.cssSelector("input[placeholder='Enter Plan Name']");
     By select_plan_typeDropdown = By.xpath("//select[@name='planType']");
     By select_plan_typeChoose = By.xpath("//*[@id='root']/div/div[3]/div/form/div/div/div/div[2]/div[2]/select/option[3]");
-    By btn_create = By.xpath("//button[normalize-space()='Create']");
+    
+    By btn_draft = By.xpath("//button[normalize-space()='Save as Draft']");
     By btn_ok1 = By.xpath("//button[contains(text(),'Ok')]");
-    By input_search_plans = By.xpath("//input[@placeholder='Search for plans']");
-    By div_plan_a = By.xpath("//div[contains(text(),'Plan A')]");
-    By btn_update = By.xpath("//button[normalize-space()='Update']");
-    By btn_ok2 = By.xpath("//button[contains(text(),'Ok')]");
     By btn_filters = By.xpath("//button[normalize-space()='Filters']");
+    By btn_filters2 = By.xpath("//h4[normalize-space()='Status']//span//*[name()='svg']");
     By header_status = By.xpath("//h4[normalize-space()='Status']");
+    By header_status2 = By.xpath("//h4[normalize-space()='Status']//span//*[name()='svg']");
     By label_draft = By.xpath("//label[normalize-space()='Draft']");
-    By div_content_area = By.xpath("//div[@class='contentArea']");
-    By img_avatar = By.xpath("//div[@class='avatar']//img[@alt='Avatar']");
+    
+    By btn_draftdel = By.xpath("//tbody//tr//button[2]//*[name()='svg']");
+  
+    
+    
 
     // Constructor
-    public CM_ManagePlans_Page(WebDriver driver) {
+    public CM_ManagePlansDeleteDraft_Page(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Default timeout
     }
@@ -52,15 +54,15 @@ public class CM_ManagePlans_Page {
     }
 
     // Method to click Create link
-//    public void clickCreateLink() {
-//        wait.until(ExpectedConditions.elementToBeClickable(link_create)).click();
-//        // Add small delay to ensure page loads
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void clickCreateLink() {
+        wait.until(ExpectedConditions.elementToBeClickable(link_create)).click();
+        // Add small delay to ensure page loads
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     // Method to enter Plan Name
     public void enterPlanName(String planName) {
@@ -123,47 +125,25 @@ public class CM_ManagePlans_Page {
     }
 
     // Method to click Create button
-    public void clickCreateButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(btn_create)).click();
+    public void clickDraftButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(btn_draft)).click();
     }
 
     // Method to click first Ok button (after Create)
-    public void clickOkAfterCreate() {
+    public void clickOkAfterDraft() {
         wait.until(ExpectedConditions.elementToBeClickable(btn_ok1)).click();
     }
-
-    // Method to search for plans
-    public void searchPlans(String searchText) {
-        WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(input_search_plans));
-        searchInput.clear();
-        searchInput.sendKeys(searchText);
-    }
-
-    // Method to verify Plan A exists
-    public boolean isPlanADisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(div_plan_a)).isDisplayed();
-    }
-
-    // Method to update Plan Name
-    public void updatePlanName(String updatedPlanName) {
-        WebElement planNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(input_plan_name));
-        planNameInput.clear();
-        planNameInput.sendKeys(updatedPlanName);
-    }
-
-    // Method to click Update button
-    public void clickUpdateButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(btn_update)).click();
-    }
-
-    // Method to click second Ok button (after Update)
-    public void clickOkAfterUpdate() {
-        wait.until(ExpectedConditions.elementToBeClickable(btn_ok2)).click();
+    
+ // Method to click Filters button
+    public void clickFiltersButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(btn_filters)).click();
     }
 
     // Method to click Filters button
-    public void clickFiltersButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(btn_filters)).click();
+    public void clickFiltersButton2() {
+        for (int i = 0; i < 5; i++) {
+            wait.until(ExpectedConditions.elementToBeClickable(btn_filters2)).click();
+        }
     }
 
     // Method to verify Status header
@@ -171,18 +151,20 @@ public class CM_ManagePlans_Page {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(header_status)).isDisplayed();
     }
 
+    // Method to verify Status header
+    public boolean isStatusHeaderDisplayed2() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(header_status2)).isDisplayed();
+    }
+
     // Method to select Draft status
     public void selectDraftStatus() {
         wait.until(ExpectedConditions.elementToBeClickable(label_draft)).click();
     }
-
-    // Method to verify Content Area
-    public boolean isContentAreaDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(div_content_area)).isDisplayed();
+    
+ // Method to click del button (after Create)
+    public void clickDelDraft() {
+        wait.until(ExpectedConditions.elementToBeClickable(btn_draftdel)).click();
     }
 
-    // Method to verify Avatar image
-    public boolean isAvatarImageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(img_avatar)).isDisplayed();
-    }
+    
 }
