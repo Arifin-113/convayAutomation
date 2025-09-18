@@ -84,11 +84,14 @@ public class CM_ManagePlansDeleteDraft {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Reduced timeout
 
         try {
-            // Navigate to home page
+        	// Navigate to home page
             driver.get("https://meet2.synesisit.info/home");
+            wait.until(ExpectedConditions.urlContains("home"));
+            System.out.println("Navigated to home page: " + driver.getCurrentUrl());
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
+            System.out.println("Original window handle: " + originalWindow);
 
             // Click Manage Organization link (opens new tab)
             managePlans.clickManageOrg();
@@ -113,6 +116,7 @@ public class CM_ManagePlansDeleteDraft {
             // Perform Manage Plans workflow
             managePlans.clickManagePlans();
             Thread.sleep(2000);
+            /*
             managePlans.clickCreateLink();
             Thread.sleep(2000);
             managePlans.enterPlanName("Plan Draft");
@@ -132,6 +136,7 @@ public class CM_ManagePlansDeleteDraft {
             Thread.sleep(2000);
             managePlans.clickOkAfterDraft();
             Thread.sleep(2000);
+            */
          // Apply filters and verify
             managePlans.clickFiltersButton();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Filters']")));
@@ -143,8 +148,17 @@ public class CM_ManagePlansDeleteDraft {
 
             managePlans.selectDraftStatus();
             Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
-            Thread.sleep(4000);
+            Thread.sleep(6000);
+            
+         // Apply Manage
+            managePlans.clickmanage_plans2();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h1[normalize-space()='Manage Plans']")));
+            Thread.sleep(2000);
+            
             managePlans.clickDelDraft();
+            Thread.sleep(2000);
+            
+            managePlans.clickDelDraftok();
             Thread.sleep(2000);
 
             
@@ -171,7 +185,7 @@ public class CM_ManagePlansDeleteDraft {
             ExcelWBook.close();
         }
         if (driver != null) {
-            driver.quit();
+//            driver.quit();
         }
     }
 }

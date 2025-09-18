@@ -32,7 +32,10 @@ public class CM_ManagePlansDeleteDraft_Page {
     By header_status2 = By.xpath("//h4[normalize-space()='Status']//span//*[name()='svg']");
     By label_draft = By.xpath("//label[normalize-space()='Draft']");
     
+    By manage_plans2 = By.xpath("//h1[normalize-space()='Manage Plans']");
+    
     By btn_draftdel = By.xpath("//tbody//tr//button[2]//*[name()='svg']");
+    By btn_draftdelok = By.xpath("//button[@class='Plan_deleteButton__obfxh']");
   
     
     
@@ -161,9 +164,21 @@ public class CM_ManagePlansDeleteDraft_Page {
         wait.until(ExpectedConditions.elementToBeClickable(label_draft)).click();
     }
     
+ // Method to clickmanage_plans2
+    public void clickmanage_plans2() {
+        wait.until(ExpectedConditions.elementToBeClickable(manage_plans2)).click();
+    }
+    
  // Method to click del button (after Create)
     public void clickDelDraft() {
         wait.until(ExpectedConditions.elementToBeClickable(btn_draftdel)).click();
+        
+    }
+    
+ // Method to click del button (after Create)
+    public void clickDelDraftok() {
+        wait.until(ExpectedConditions.elementToBeClickable(btn_draftdelok)).click();
+        
     }
 
     

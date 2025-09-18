@@ -1,78 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-17T17:05:18 BDT" name="Default suite" finished-at="2025-09-17T17:06:02 BDT" duration-ms="44340">
+  <suite started-at="2025-09-18T15:54:15 BDT" name="Default suite" finished-at="2025-09-18T15:54:47 BDT" duration-ms="31623">
     <groups>
     </groups>
-    <test started-at="2025-09-17T17:05:18 BDT" name="Default test" finished-at="2025-09-17T17:06:02 BDT" duration-ms="44340">
-      <class name="TestCases.CM_ManagePlansFilter">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:18 BDT" name="setup" finished-at="2025-09-17T17:05:20 BDT" duration-ms="2166" status="PASS">
+    <test started-at="2025-09-18T15:54:15 BDT" name="Default test" finished-at="2025-09-18T15:54:47 BDT" duration-ms="31623">
+      <class name="TestCases.CM_ManagePlansDeleteDraft">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.CM_ManagePlansDeleteDraft@7c37508a]" started-at="2025-09-18T15:54:16 BDT" name="setup" finished-at="2025-09-18T15:54:18 BDT" duration-ms="2197" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:20 BDT" name="navigateToHomePage" finished-at="2025-09-17T17:05:24 BDT" duration-ms="3446" status="PASS">
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:TestCases.CM_ManagePlansDeleteDraft@7c37508a]" started-at="2025-09-18T15:54:18 BDT" name="navigateToHomePage" finished-at="2025-09-18T15:54:25 BDT" duration-ms="6960" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToHomePage -->
-        <test-method signature="testManagePlans()[pri:1, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:24 BDT" name="testManagePlans" finished-at="2025-09-17T17:05:36 BDT" duration-ms="12355" status="PASS">
+        <test-method signature="testManagePlans()[pri:1, instance:TestCases.CM_ManagePlansDeleteDraft@7c37508a]" started-at="2025-09-18T15:54:25 BDT" name="testManagePlans" finished-at="2025-09-18T15:54:47 BDT" duration-ms="22425" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testManagePlans -->
-        <test-method is-config="true" signature="captureFailureScreenshot(org.testng.ITestResult)[pri:0, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:36 BDT" name="captureFailureScreenshot" finished-at="2025-09-17T17:05:36 BDT" duration-ms="141" status="PASS">
+        <test-method is-config="true" signature="captureFailureScreenshot(org.testng.ITestResult)[pri:0, instance:TestCases.CM_ManagePlansDeleteDraft@7c37508a]" started-at="2025-09-18T15:54:47 BDT" name="captureFailureScreenshot" finished-at="2025-09-18T15:54:47 BDT" duration-ms="2" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=testManagePlans status=SUCCESS method=CM_ManagePlansFilter.testManagePlans()[pri:1, instance:TestCases.CM_ManagePlansFilter@7c37508a] output={null}]]]>
+                <![CDATA[[TestResult name=testManagePlans status=SUCCESS method=CM_ManagePlansDeleteDraft.testManagePlans()[pri:1, instance:TestCases.CM_ManagePlansDeleteDraft@7c37508a] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureFailureScreenshot -->
-        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:36 BDT" name="navigateToHomePage" finished-at="2025-09-17T17:05:37 BDT" duration-ms="1323" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- navigateToHomePage -->
-        <test-method signature="testManagePlans2()[pri:2, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:37 BDT" name="testManagePlans2" finished-at="2025-09-17T17:05:49 BDT" duration-ms="11233" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testManagePlans2 -->
-        <test-method is-config="true" signature="captureFailureScreenshot(org.testng.ITestResult)[pri:0, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:49 BDT" name="captureFailureScreenshot" finished-at="2025-09-17T17:05:49 BDT" duration-ms="160" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=testManagePlans2 status=SUCCESS method=CM_ManagePlansFilter.testManagePlans2()[pri:2, instance:TestCases.CM_ManagePlansFilter@7c37508a] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- captureFailureScreenshot -->
-        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:49 BDT" name="navigateToHomePage" finished-at="2025-09-17T17:05:50 BDT" duration-ms="1559" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- navigateToHomePage -->
-        <test-method signature="testManagePlans3()[pri:3, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:05:50 BDT" name="testManagePlans3" finished-at="2025-09-17T17:06:02 BDT" duration-ms="11263" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testManagePlans3 -->
-        <test-method is-config="true" signature="captureFailureScreenshot(org.testng.ITestResult)[pri:0, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:06:02 BDT" name="captureFailureScreenshot" finished-at="2025-09-17T17:06:02 BDT" duration-ms="156" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=testManagePlans3 status=SUCCESS method=CM_ManagePlansFilter.testManagePlans3()[pri:3, instance:TestCases.CM_ManagePlansFilter@7c37508a] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- captureFailureScreenshot -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:TestCases.CM_ManagePlansFilter@7c37508a]" started-at="2025-09-17T17:06:02 BDT" name="teardown" finished-at="2025-09-17T17:06:02 BDT" duration-ms="497" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:TestCases.CM_ManagePlansDeleteDraft@7c37508a]" started-at="2025-09-18T15:54:47 BDT" name="teardown" finished-at="2025-09-18T15:54:47 BDT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- TestCases.CM_ManagePlansFilter -->
+      </class> <!-- TestCases.CM_ManagePlansDeleteDraft -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

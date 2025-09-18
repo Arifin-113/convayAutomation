@@ -111,7 +111,7 @@ public class CM_ManagePlans {
 
             // Perform Manage Plans workflow
             managePlans.clickManagePlans();
-            managePlans.clickCreateLink();
+//            managePlans.clickCreateLink();
             managePlans.enterPlanName("Plan A");
 
             // Debug dropdown options
