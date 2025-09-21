@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -23,10 +24,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Page_Objects.Login_Page;
-import Page_Objects.CM_ManagePlansEditPlan_Page;
+import Page_Objects.CM_OrganizationEdit_Page;
 import Utilities.Take_Screenshot;
 
-public class CM_ManagePlansEditPlan {
+public class CM_OrganizationEdit {
 
     WebDriver driver;
     XSSFWorkbook ExcelWBook;
@@ -76,10 +77,10 @@ public class CM_ManagePlansEditPlan {
         lp.clickLogin();
         Thread.sleep(4000); // Wait for login to complete
     }
-  
-    @Test(priority = 2)
-    void testManagePlans2() throws InterruptedException {
-    	CM_ManagePlansEditPlan_Page managePlans = new CM_ManagePlansEditPlan_Page(driver);
+
+    @Test(priority = 1)
+    void testManagePlans1() throws InterruptedException {
+    	CM_OrganizationEdit_Page managePlans = new CM_OrganizationEdit_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
 
         try {
@@ -115,27 +116,21 @@ public class CM_ManagePlansEditPlan {
                     "New tab URL does not match expected: https://meet2.synesisit.info:85/");
 
             // Perform Manage Plans workflow
-            managePlans.clickManagePlans();
+            managePlans.clickManageOrg();
+            Thread.sleep(2000);
+            
+         // Org Button Locator
+            managePlans.orgButton();
             Thread.sleep(2000);
 
-            // Search for the created plan and press Enter
-            managePlans.searchPlans("Plan A");
-            Thread.sleep(2000);
-            Assert.assertTrue(managePlans.isPlanADisplayed(), "Plan A is not displayed");
-
-            // Click Plan A to open edit form
-            managePlans.clickPlanA();
-            Thread.sleep(2000);
 
             // Edit Button Locator
-            managePlans.editButton2();
+            managePlans.editButton();
             Thread.sleep(2000);
             // typeChooseOrg
             managePlans.typeChooseOrg();
             Thread.sleep(2000);
-            // Update the plan
-            managePlans.updatePlanName("Plan A Updated");
-            Thread.sleep(2000);
+            
 
             // If Enter key doesn't submit the update, click Update button
             managePlans.clickUpdateButton();

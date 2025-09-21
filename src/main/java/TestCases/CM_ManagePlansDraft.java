@@ -23,6 +23,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Page_Objects.Login_Page;
+import Page_Objects.CM_ManagePlansCreateNewPlan_Page;
 import Page_Objects.CM_ManagePlansDraft_Page;
 import Utilities.Take_Screenshot;
 
@@ -83,11 +84,14 @@ public class CM_ManagePlansDraft {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Reduced timeout
 
         try {
-            // Navigate to home page
+            /// Navigate to home page
             driver.get("https://meet2.synesisit.info/home");
+            wait.until(ExpectedConditions.urlContains("home"));
+            System.out.println("Navigated to home page: " + driver.getCurrentUrl());
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
+            System.out.println("Original window handle: " + originalWindow);
 
             // Click Manage Organization link (opens new tab)
             managePlans.clickManageOrg();
@@ -114,7 +118,17 @@ public class CM_ManagePlansDraft {
             Thread.sleep(2000);
             managePlans.clickCreateLink();
             Thread.sleep(2000);
-            managePlans.enterPlanName("Plan Draft");
+//            managePlans.enterPlanName("Plan Draft");
+            
+            // Read plan name from Excel
+            ExcelWSheet = ExcelWBook.getSheetAt(21); // Using sheet 0 as requested
+            
+            String planName = ExcelWSheet.getRow(0).getCell(0).toString();
+            
+            Thread.sleep(2000);
+            
+            CM_ManagePlansCreateNewPlan_Page cp = new CM_ManagePlansCreateNewPlan_Page(driver);
+            cp.setPlanName(planName);
             Thread.sleep(2000);
 
             // Debug dropdown options

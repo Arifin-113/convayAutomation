@@ -25,13 +25,7 @@ public class CM_ManagePlansEditPlan_Page {
     By btn_update = By.xpath("//button[normalize-space()='Update']");
     By btn_ok2 = By.xpath("//button[contains(text(), 'Ok')]");
     By edit_btn2 = By.xpath("//*[@id=\"root\"]/div/div[3]/div[2]/div[3]/div/table/tbody/tr[2]/td[6]/div/button[1]");
-    /*    
-    By btn_filters = By.xpath("//button[normalize-space()='Filters']");
-    By header_status = By.xpath("//h4[normalize-space()='Status']");
-    By label_draft = By.xpath("//label[normalize-space()='Draft']");
-    By div_content_area = By.xpath("//div[@class='contentArea']");
-    By img_avatar = By.xpath("//div[@class='avatar']//img[@alt='Avatar']");
-*/
+    
     // Constructor
     public CM_ManagePlansEditPlan_Page(WebDriver driver) {
         this.driver = driver;

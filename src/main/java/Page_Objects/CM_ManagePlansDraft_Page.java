@@ -20,7 +20,8 @@ public class CM_ManagePlansDraft_Page {
     By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
     By manage_plans = By.xpath("//span[normalize-space()='Manage Plans']");
     By link_create = By.xpath("//a[contains(text(),'Create')]");
-    By input_plan_name = By.cssSelector("input[placeholder='Enter Plan Name']");
+//    By input_plan_name = By.cssSelector("input[placeholder='Enter Plan Name']");
+    By setPlanName_text = By.cssSelector("input[placeholder='Enter Plan Name']");
     By select_plan_typeDropdown = By.xpath("//select[@name='planType']");
     By select_plan_typeChoose = By.xpath("//*[@id='root']/div/div[3]/div/form/div/div/div/div[2]/div[2]/select/option[3]");
     By btn_draft = By.xpath("//button[normalize-space()='Save as Draft']");
@@ -53,7 +54,11 @@ public class CM_ManagePlansDraft_Page {
             e.printStackTrace();
         }
     }
-
+    
+    public void setPlanName(String user) {
+		driver.findElement(setPlanName_text).sendKeys(user);
+	}
+/*
     // Method to enter Plan Name
     public void enterPlanName(String planName) {
         // Debug: Check if input field is present
@@ -72,7 +77,7 @@ public class CM_ManagePlansDraft_Page {
             planNameInput.sendKeys(planName);
         }
     }
-
+*/
     // Method to click Plan Type dropdown
     public void clickPlanTypeDropdown() {
         WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeDropdown));

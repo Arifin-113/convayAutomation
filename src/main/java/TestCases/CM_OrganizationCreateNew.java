@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.Set;
+import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -23,10 +23,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Page_Objects.Login_Page;
-import Page_Objects.CM_ManagePlansEditPlan_Page;
+import Page_Objects.CM_OrganizationCreateNew_Page;
 import Utilities.Take_Screenshot;
 
-public class CM_ManagePlansEditPlan {
+public class CM_OrganizationCreateNew {
 
     WebDriver driver;
     XSSFWorkbook ExcelWBook;
@@ -76,20 +76,18 @@ public class CM_ManagePlansEditPlan {
         lp.clickLogin();
         Thread.sleep(4000); // Wait for login to complete
     }
-  
-    @Test(priority = 2)
-    void testManagePlans2() throws InterruptedException {
-    	CM_ManagePlansEditPlan_Page managePlans = new CM_ManagePlansEditPlan_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
+
+    @Test(priority = 1)
+    void testManagePlans() throws InterruptedException {
+    	CM_OrganizationCreateNew_Page managePlans = new CM_OrganizationCreateNew_Page(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Reduced timeout
 
         try {
             // Navigate to home page
             driver.get("https://meet2.synesisit.info/home");
-            Thread.sleep(2000); // Wait for page to load
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
-            System.out.println("Original window handle: " + originalWindow);
 
             // Click Manage Organization link (opens new tab)
             managePlans.clickManageOrg();
@@ -98,62 +96,31 @@ public class CM_ManagePlansEditPlan {
             wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
             // Switch to the new tab
-            Set<String> windowHandles = driver.getWindowHandles();
-            System.out.println("Window handles: " + windowHandles);
-            for (String windowHandle : windowHandles) {
-                if (!originalWindow.equals(windowHandle)) {
+            for (String windowHandle : driver.getWindowHandles()) {
+                if (!originalWindow.contentEquals(windowHandle)) {
                     driver.switchTo().window(windowHandle);
-                    System.out.println("Switched to new tab: " + windowHandle);
                     break;
                 }
             }
 
             // Verify new tab URL
             String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl); // Debug print
+            System.out.println("New tab URL: " + newTabUrl); // Debug print (syso + Ctrl + Space in Eclipse)
             Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
                     "New tab URL does not match expected: https://meet2.synesisit.info:85/");
-
+/*
             // Perform Manage Plans workflow
-            managePlans.clickManagePlans();
+            managePlans.clickOrg();
             Thread.sleep(2000);
-
-            // Search for the created plan and press Enter
-            managePlans.searchPlans("Plan A");
+            managePlans.clickCreateLink();
             Thread.sleep(2000);
-            Assert.assertTrue(managePlans.isPlanADisplayed(), "Plan A is not displayed");
-
-            // Click Plan A to open edit form
-            managePlans.clickPlanA();
-            Thread.sleep(2000);
-
-            // Edit Button Locator
-            managePlans.editButton2();
-            Thread.sleep(2000);
-            // typeChooseOrg
-            managePlans.typeChooseOrg();
-            Thread.sleep(2000);
-            // Update the plan
-            managePlans.updatePlanName("Plan A Updated");
-            Thread.sleep(2000);
-
-            // If Enter key doesn't submit the update, click Update button
-            managePlans.clickUpdateButton();
-            Thread.sleep(2000);
-            managePlans.clickOkAfterUpdate();
-            Thread.sleep(2000);
-
-            // Switch back to original tab if needed
-            driver.switchTo().window(originalWindow);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail("Test failed due to exception: " + e.getMessage());
-        }
-    }
+            managePlans.clickSuperadmin();
+            
+*/
+            
 
     @AfterMethod
-    public void captureFailureScreenshot2(ITestResult result) throws IOException {
+    public void captureFailureScreenshot(ITestResult result) throws IOException {
         if (ITestResult.FAILURE == result.getStatus()) {
             Take_Screenshot.TakeScreenshot(driver, result.getName());
         }

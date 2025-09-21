@@ -114,8 +114,17 @@ public class CM_ManagePlansCreateNewPlan {
             Thread.sleep(2000);
             managePlans.clickCreateLink();
             Thread.sleep(2000);
-            managePlans.enterPlanName("Plan A");
+//          managePlans.enterPlanName("Plan A");
+            
+         // Read plan name from Excel
+            ExcelWSheet = ExcelWBook.getSheetAt(20); // Using sheet 0 as requested
+            
+            String planName = ExcelWSheet.getRow(0).getCell(1).toString();
+            
             Thread.sleep(2000);
+            
+            CM_ManagePlansCreateNewPlan_Page cp = new CM_ManagePlansCreateNewPlan_Page(driver);
+            cp.setPlanName(planName);
 
             // Debug dropdown options
             List<String> planTypeOptions = managePlans.getPlanTypeOptions();
