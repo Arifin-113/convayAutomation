@@ -2,39 +2,39 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-21T16:21:28 BDT" name="Default suite" finished-at="2025-09-21T16:22:13 BDT" duration-ms="45112">
+  <suite started-at="2025-09-22T16:08:02 BDT" name="Default suite" finished-at="2025-09-22T16:08:46 BDT" duration-ms="43623">
     <groups>
     </groups>
-    <test started-at="2025-09-21T16:21:28 BDT" name="Default test" finished-at="2025-09-21T16:22:13 BDT" duration-ms="45112">
-      <class name="TestCases.CM_OrganizationEdit">
-        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.CM_OrganizationEdit@7c37508a]" started-at="2025-09-21T16:21:28 BDT" name="setup" finished-at="2025-09-21T16:21:31 BDT" duration-ms="2217" status="PASS">
+    <test started-at="2025-09-22T16:08:02 BDT" name="Default test" finished-at="2025-09-22T16:08:46 BDT" duration-ms="43623">
+      <class name="TestCases.CM_ManagePlansEditPlan">
+        <test-method is-config="true" signature="setup()[pri:0, instance:TestCases.CM_ManagePlansEditPlan@7c37508a]" started-at="2025-09-22T16:08:02 BDT" name="setup" finished-at="2025-09-22T16:08:04 BDT" duration-ms="2065" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:TestCases.CM_OrganizationEdit@7c37508a]" started-at="2025-09-21T16:21:31 BDT" name="navigateToHomePage" finished-at="2025-09-21T16:21:41 BDT" duration-ms="10269" status="PASS">
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:TestCases.CM_ManagePlansEditPlan@7c37508a]" started-at="2025-09-22T16:08:04 BDT" name="navigateToHomePage" finished-at="2025-09-22T16:08:10 BDT" duration-ms="6156" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToHomePage -->
-        <test-method signature="testManagePlans1()[pri:1, instance:TestCases.CM_OrganizationEdit@7c37508a]" started-at="2025-09-21T16:21:41 BDT" name="testManagePlans1" finished-at="2025-09-21T16:22:13 BDT" duration-ms="32143" status="PASS">
+        <test-method signature="testManagePlans2()[pri:2, instance:TestCases.CM_ManagePlansEditPlan@7c37508a]" started-at="2025-09-22T16:08:10 BDT" name="testManagePlans2" finished-at="2025-09-22T16:08:45 BDT" duration-ms="35008" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testManagePlans1 -->
-        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.CM_OrganizationEdit@7c37508a]" started-at="2025-09-21T16:22:13 BDT" name="captureFailureScreenshot2" finished-at="2025-09-21T16:22:13 BDT" duration-ms="1" status="PASS">
+        </test-method> <!-- testManagePlans2 -->
+        <test-method is-config="true" signature="captureFailureScreenshot2(org.testng.ITestResult)[pri:0, instance:TestCases.CM_ManagePlansEditPlan@7c37508a]" started-at="2025-09-22T16:08:45 BDT" name="captureFailureScreenshot2" finished-at="2025-09-22T16:08:45 BDT" duration-ms="2" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=testManagePlans1 status=SUCCESS method=CM_OrganizationEdit.testManagePlans1()[pri:1, instance:TestCases.CM_OrganizationEdit@7c37508a] output={null}]]]>
+                <![CDATA[[TestResult name=testManagePlans2 status=SUCCESS method=CM_ManagePlansEditPlan.testManagePlans2()[pri:2, instance:TestCases.CM_ManagePlansEditPlan@7c37508a] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- captureFailureScreenshot2 -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:TestCases.CM_OrganizationEdit@7c37508a]" started-at="2025-09-21T16:22:13 BDT" name="teardown" finished-at="2025-09-21T16:22:13 BDT" duration-ms="442" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:TestCases.CM_ManagePlansEditPlan@7c37508a]" started-at="2025-09-22T16:08:45 BDT" name="teardown" finished-at="2025-09-22T16:08:46 BDT" duration-ms="351" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- TestCases.CM_OrganizationEdit -->
+      </class> <!-- TestCases.CM_ManagePlansEditPlan -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

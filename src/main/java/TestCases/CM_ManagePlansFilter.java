@@ -40,12 +40,6 @@ public class CM_ManagePlansFilter {
         HashMap<String, Object> contentSettings = new HashMap<>();
         HashMap<String, Object> profile = new HashMap<>();
         HashMap<String, Object> prefs = new HashMap<>();
-        
-        contentSettings.put("media_stream_mic", 1); // 1 = allow
-        profile.put("managed_default_content_settings", contentSettings);
-        prefs.put("profile", profile);
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--use-fake-ui-for-media-stream");
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
@@ -138,7 +132,7 @@ public class CM_ManagePlansFilter {
 
             managePlans.selectDraftStatus();
             Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
-            Thread.sleep(2000);
+            Thread.sleep(4000);
 
         } catch (Exception e) {
             e.printStackTrace();

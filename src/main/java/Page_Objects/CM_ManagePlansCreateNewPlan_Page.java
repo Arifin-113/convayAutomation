@@ -57,26 +57,7 @@ public class CM_ManagePlansCreateNewPlan_Page {
     public void setPlanName(String user) {
 		driver.findElement(setPlanName_text).sendKeys(user);
 	}
-/*
-    // Method to enter Plan Name
-    public void enterPlanName(String planName) {
-        // Debug: Check if input field is present
-        try {
-            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
-            WebElement planNameInput = longWait.until(ExpectedConditions.visibilityOfElementLocated(input_plan_name));
-            System.out.println("Plan name input found: " + planNameInput.isDisplayed());
-            planNameInput.clear();
-            planNameInput.sendKeys(planName);
-        } catch (Exception e) {
-            // Fallback XPath
-            System.out.println("CSS selector failed, trying fallback XPath: " + e.getMessage());
-            By fallbackInput = By.xpath("//input[@type='text' and contains(@placeholder, 'Plan Name')]");
-            WebElement planNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(fallbackInput));
-            planNameInput.clear();
-            planNameInput.sendKeys(planName);
-        }
-    }
-*/
+
     // Method to click Plan Type dropdown
     public void clickPlanTypeDropdown() {
         WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeDropdown));

@@ -118,8 +118,7 @@ public class CM_ManagePlansDraft {
             Thread.sleep(2000);
             managePlans.clickCreateLink();
             Thread.sleep(2000);
-//            managePlans.enterPlanName("Plan Draft");
-            
+
             // Read plan name from Excel
             ExcelWSheet = ExcelWBook.getSheetAt(21); // Using sheet 0 as requested
             

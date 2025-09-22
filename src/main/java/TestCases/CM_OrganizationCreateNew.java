@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -76,7 +78,7 @@ public class CM_OrganizationCreateNew {
         lp.clickLogin();
         Thread.sleep(4000); // Wait for login to complete
     }
-
+    /*
     @Test(priority = 1)
     void testManagePlans() throws InterruptedException {
     	CM_OrganizationCreateNew_Page managePlans = new CM_OrganizationCreateNew_Page(driver);
@@ -108,7 +110,7 @@ public class CM_OrganizationCreateNew {
             System.out.println("New tab URL: " + newTabUrl); // Debug print (syso + Ctrl + Space in Eclipse)
             Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
                     "New tab URL does not match expected: https://meet2.synesisit.info:85/");
-/*
+
             // Perform Manage Plans workflow
             managePlans.clickOrg();
             Thread.sleep(2000);

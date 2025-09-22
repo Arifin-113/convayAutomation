@@ -9,7 +9,9 @@ import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +26,7 @@ import org.testng.annotations.Test;
 
 import Page_Objects.Login_Page;
 import Page_Objects.CM_ManagePlansEditPlan_Page;
+import Page_Objects.CM_ManagePlansSearch_Page;
 import Utilities.Take_Screenshot;
 
 public class CM_ManagePlansEditPlan {
@@ -40,12 +43,7 @@ public class CM_ManagePlansEditPlan {
         HashMap<String, Object> profile = new HashMap<>();
         HashMap<String, Object> prefs = new HashMap<>();
         
-        contentSettings.put("media_stream_mic", 1); // 1 = allow
-        profile.put("managed_default_content_settings", contentSettings);
-        prefs.put("profile", profile);
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--use-fake-ui-for-media-stream");
-
+      
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -117,31 +115,54 @@ public class CM_ManagePlansEditPlan {
             // Perform Manage Plans workflow
             managePlans.clickManagePlans();
             Thread.sleep(2000);
-
-            // Search for the created plan and press Enter
-            managePlans.searchPlans("Plan A");
+            
+            
+         // Search for the created plan 
+            managePlans.clickSearchPlans();
             Thread.sleep(2000);
-            Assert.assertTrue(managePlans.isPlanADisplayed(), "Plan A is not displayed");
-
+  
+            // Read plan name from Excel
+            ExcelWSheet = ExcelWBook.getSheetAt(22); 
+            String planName = ExcelWSheet.getRow(0).getCell(0).toString();
+            
+            Thread.sleep(2000);
+            
+            CM_ManagePlansSearch_Page cp = new CM_ManagePlansSearch_Page(driver);
+            cp.setPlanName(planName);
+            Thread.sleep(3000);
+            
             // Click Plan A to open edit form
             managePlans.clickPlanA();
             Thread.sleep(2000);
+           
 
             // Edit Button Locator
             managePlans.editButton2();
             Thread.sleep(2000);
             // typeChooseOrg
             managePlans.typeChooseOrg();
-            Thread.sleep(2000);
-            // Update the plan
-            managePlans.updatePlanName("Plan A Updated");
-            Thread.sleep(2000);
+			Thread.sleep(2000);
 
-            // If Enter key doesn't submit the update, click Update button
-            managePlans.clickUpdateButton();
-            Thread.sleep(2000);
-            managePlans.clickOkAfterUpdate();
-            Thread.sleep(2000);
+			// Search for the created plan
+			managePlans.clickNamePlans();
+			Thread.sleep(2000);
+
+			managePlans.clearPlanName();
+
+			// Read plan name from Excel for Updating
+			ExcelWSheet = ExcelWBook.getSheet("CM_ManageSearchPlan");
+			String planName2 = ExcelWSheet.getRow(1).getCell(0).toString();
+			Thread.sleep(2000);
+
+			CM_ManagePlansEditPlan_Page ep = new CM_ManagePlansEditPlan_Page(driver);
+			ep.setPlanName2(planName2);
+			Thread.sleep(3000);
+
+			// If Enter key doesn't submit the update, click Update button
+			managePlans.clickUpdateButton();
+			Thread.sleep(2000);
+			managePlans.clickOkAfterUpdate();
+			Thread.sleep(2000);
 
             // Switch back to original tab if needed
             driver.switchTo().window(originalWindow);

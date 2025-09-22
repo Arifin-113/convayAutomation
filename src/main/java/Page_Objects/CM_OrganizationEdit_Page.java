@@ -19,15 +19,14 @@ public class CM_OrganizationEdit_Page {
     // Define locators
     By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
     By org = By.xpath("//span[normalize-space()='Organizations']");
-//    By link_create = By.xpath("//a[@class='btnPrimary']");
-//    By superadmin = By.cssSelector("//div[contains(text(),'Super Admin')]");
+
     
     By org_btn = By.xpath("//div[normalize-space()='Notre Dame Math Club']");
     By edit_btn = By.xpath("//button[contains(@type,'button')]");
     By select_plan_typeChooseOrg = By.xpath("//*[@id=\"organizationForm\"]/div/div[1]/div/div[2]/div[2]/select/option[5]");
     By btn_update = By.xpath("//button[normalize-space()='Update']");
     By btn_ok2 = By.xpath("//button[contains(text(),'Ok')]");
-//    By edit_btn2 = By.xpath("//*[@id=\"root\"]/div/div[3]/div[2]/div[3]/div/table/tbody/tr[2]/td[6]/div/button[1]");
+    By edit_btn2 = By.xpath("//*[@id=\"root\"]/div/div[3]/div[2]/div[3]/div/table/tbody/tr[4]/td[6]/div/button/svg");
     
 
     // Constructor
@@ -58,9 +57,21 @@ public class CM_OrganizationEdit_Page {
         }
     }
     
- // Method to Edit Plan A to open edit form
+ // Method to Edit Org to open edit form
     public void editButton() {
         WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(edit_btn));
+        editButton.click();
+        // Add delay to ensure edit form loads
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // Method to Edit Org to open edit form
+    public void editButton2() {
+        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(edit_btn2));
         editButton.click();
         // Add delay to ensure edit form loads
         try {

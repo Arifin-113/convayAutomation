@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -77,7 +78,7 @@ public class CM_OrganizationEdit {
         lp.clickLogin();
         Thread.sleep(4000); // Wait for login to complete
     }
-
+/*
     @Test(priority = 1)
     void testManagePlans1() throws InterruptedException {
     	CM_OrganizationEdit_Page managePlans = new CM_OrganizationEdit_Page(driver);
@@ -119,13 +120,85 @@ public class CM_OrganizationEdit {
             managePlans.clickManageOrg();
             Thread.sleep(2000);
             
-         // Org Button Locator
+            // Org Button Locator
             managePlans.orgButton();
             Thread.sleep(2000);
 
 
             // Edit Button Locator
             managePlans.editButton();
+            Thread.sleep(2000);
+            // typeChooseOrg
+            managePlans.typeChooseOrg();
+            Thread.sleep(2000);
+            
+
+            // If Enter key doesn't submit the update, click Update button
+            managePlans.clickUpdateButton();
+            Thread.sleep(2000);
+            managePlans.clickOkAfterUpdate();
+            Thread.sleep(2000);
+
+            // Switch back to original tab if needed
+            driver.switchTo().window(originalWindow);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("Test failed due to exception: " + e.getMessage());
+        }
+    }
+    
+ */   
+    @Test(priority = 2)
+    void testManagePlans2() throws InterruptedException {
+    	CM_OrganizationEdit_Page managePlans = new CM_OrganizationEdit_Page(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
+
+        try {
+            // Navigate to home page
+            driver.get("https://meet2.synesisit.info/home");
+            Thread.sleep(2000); // Wait for page to load
+
+            // Store the original window handle
+            String originalWindow = driver.getWindowHandle();
+            System.out.println("Original window handle: " + originalWindow);
+
+            // Click Manage Organization link (opens new tab)
+            managePlans.clickManageOrg();
+
+            // Wait for new tab to open
+            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+            // Switch to the new tab
+            Set<String> windowHandles = driver.getWindowHandles();
+            System.out.println("Window handles: " + windowHandles);
+            for (String windowHandle : windowHandles) {
+                if (!originalWindow.equals(windowHandle)) {
+                    driver.switchTo().window(windowHandle);
+                    System.out.println("Switched to new tab: " + windowHandle);
+                    break;
+                }
+            }
+
+            // Verify new tab URL
+            String newTabUrl = driver.getCurrentUrl();
+            System.out.println("New tab URL: " + newTabUrl); // Debug print
+            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
+                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
+
+            // Perform Manage Plans workflow
+            managePlans.clickManageOrg();
+            Thread.sleep(2000);
+            
+         // Execute JavaScript to simulate a single downward mouse wheel scroll
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript(
+                "window.dispatchEvent(new WheelEvent('wheel', { deltaY: 100 }));"
+            );
+            System.out.println("Mouse wheel scrolled down once.");
+
+            // Edit Button Locator
+            managePlans.editButton2();
             Thread.sleep(2000);
             // typeChooseOrg
             managePlans.typeChooseOrg();

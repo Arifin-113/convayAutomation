@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
-//import java.util.List;
+
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -40,13 +40,7 @@ public class CM_ManagePlansDeleteDraft {
         HashMap<String, Object> contentSettings = new HashMap<>();
         HashMap<String, Object> profile = new HashMap<>();
         HashMap<String, Object> prefs = new HashMap<>();
-        
-        contentSettings.put("media_stream_mic", 1); // 1 = allow
-        profile.put("managed_default_content_settings", contentSettings);
-        prefs.put("profile", profile);
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--use-fake-ui-for-media-stream");
-
+       
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -116,28 +110,8 @@ public class CM_ManagePlansDeleteDraft {
             // Perform Manage Plans workflow
             managePlans.clickManagePlans();
             Thread.sleep(2000);
-            /*
-            managePlans.clickCreateLink();
-            Thread.sleep(2000);
-            managePlans.enterPlanName("Plan Draft");
-            Thread.sleep(2000);
-
-            // Debug dropdown options
-            List<String> planTypeOptions = managePlans.getPlanTypeOptions();
-            System.out.println("Available plan type options: " + planTypeOptions);
-
-            // Select plan type (User based)
-            managePlans.clickPlanTypeDropdown();
-            Thread.sleep(2000);
-            managePlans.selectPlanType("User based");
-            Thread.sleep(2000);
-
-            managePlans.clickDraftButton();
-            Thread.sleep(2000);
-            managePlans.clickOkAfterDraft();
-            Thread.sleep(2000);
-            */
-         // Apply filters and verify
+            
+            // Apply filters and verify
             managePlans.clickFiltersButton();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Filters']")));
             Thread.sleep(2000);
@@ -150,7 +124,7 @@ public class CM_ManagePlansDeleteDraft {
             Assert.assertTrue(managePlans.isStatusHeaderDisplayed(), "Status header is not displayed");
             Thread.sleep(6000);
             
-         // Apply Manage
+            // Apply Manage
             managePlans.clickmanage_plans2();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h1[normalize-space()='Manage Plans']")));
             Thread.sleep(2000);
@@ -159,7 +133,10 @@ public class CM_ManagePlansDeleteDraft {
             Thread.sleep(2000);
             
             managePlans.clickDelDraftok();
-            Thread.sleep(2000);
+            Thread.sleep(6000);
+            
+
+            
 
             
 
@@ -185,7 +162,7 @@ public class CM_ManagePlansDeleteDraft {
             ExcelWBook.close();
         }
         if (driver != null) {
-//            driver.quit();
+            driver.quit();
         }
     }
 }

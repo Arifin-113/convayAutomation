@@ -114,10 +114,10 @@ public class CM_ManagePlansCreateNewPlan {
             Thread.sleep(2000);
             managePlans.clickCreateLink();
             Thread.sleep(2000);
-//          managePlans.enterPlanName("Plan A");
+
             
          // Read plan name from Excel
-            ExcelWSheet = ExcelWBook.getSheetAt(20); // Using sheet 0 as requested
+            ExcelWSheet = ExcelWBook.getSheetAt(20); 
             
             String planName = ExcelWSheet.getRow(0).getCell(1).toString();
             
