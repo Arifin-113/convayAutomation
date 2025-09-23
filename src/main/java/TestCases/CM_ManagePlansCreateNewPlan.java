@@ -39,12 +39,6 @@ public class CM_ManagePlansCreateNewPlan {
         HashMap<String, Object> contentSettings = new HashMap<>();
         HashMap<String, Object> profile = new HashMap<>();
         HashMap<String, Object> prefs = new HashMap<>();
-        
-        contentSettings.put("media_stream_mic", 1); // 1 = allow
-        profile.put("managed_default_content_settings", contentSettings);
-        prefs.put("profile", profile);
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--use-fake-ui-for-media-stream");
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);

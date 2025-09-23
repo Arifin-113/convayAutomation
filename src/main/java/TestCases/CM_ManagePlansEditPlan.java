@@ -72,7 +72,7 @@ public class CM_ManagePlansEditPlan {
         lp.setUserName(username);
         lp.setPassword(password);
         lp.clickLogin();
-        Thread.sleep(4000); // Wait for login to complete
+        Thread.sleep(4000); 
     }
   
     @Test(priority = 2)
@@ -117,7 +117,7 @@ public class CM_ManagePlansEditPlan {
             Thread.sleep(2000);
             
             
-         // Search for the created plan 
+            // Search for the created plan 
             managePlans.clickSearchPlans();
             Thread.sleep(2000);
   
