@@ -59,85 +59,17 @@ public class CM_ManagePlansDeleteDraft_Page {
     // Method to click Create link
     public void clickCreateLink() {
         wait.until(ExpectedConditions.elementToBeClickable(link_create)).click();
-        // Add small delay to ensure page loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        
     }
 
     // Method to enter Plan Name
     public void enterPlanName(String planName) {
-        // Debug: Check if input field is present
-        try {
-            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
-            WebElement planNameInput = longWait.until(ExpectedConditions.visibilityOfElementLocated(input_plan_name));
-            System.out.println("Plan name input found: " + planNameInput.isDisplayed());
-            planNameInput.clear();
-            planNameInput.sendKeys(planName);
-        } catch (Exception e) {
-            // Fallback XPath
-            System.out.println("CSS selector failed, trying fallback XPath: " + e.getMessage());
-            By fallbackInput = By.xpath("//input[@type='text' and contains(@placeholder, 'Plan Name')]");
-            WebElement planNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(fallbackInput));
-            planNameInput.clear();
-            planNameInput.sendKeys(planName);
-        }
+        WebElement input = wait.until(ExpectedConditions.elementToBeClickable(input_plan_name));
+        input.clear();
+        input.sendKeys(planName);
     }
-
-    // Method to click Plan Type dropdown
-    public void clickPlanTypeDropdown() {
-        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeDropdown));
-        try {
-            dropdown.click();
-        } catch (Exception e) {
-            System.out.println("Standard click failed, trying JavaScript click: " + e.getMessage());
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click();", dropdown);
-        }
-    }
-
-    // Method to select Plan Type (User based or Organization based)
-    public void selectPlanType(String planType) {
-        WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(select_plan_typeDropdown));
-        try {
-            // Try Select class for <select> dropdown
-            Select select = new Select(dropdown);
-            select.selectByVisibleText(planType); // e.g., "User based"
-        } catch (Exception e) {
-            // Fallback: Click the specific option (User based)
-            System.out.println("Select class failed, trying direct option click: " + e.getMessage());
-            wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeChoose)).click();
-        }
-    }
-
-    // Method to get available dropdown options for debugging
-    public List<String> getPlanTypeOptions() {
-        WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(select_plan_typeDropdown));
-        try {
-            Select select = new Select(dropdown);
-            return select.getOptions().stream()
-                    .map(WebElement::getText)
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            System.out.println("Unable to get options with Select, trying custom dropdown: " + e.getMessage());
-            List<WebElement> options = driver.findElements(By.xpath("//*[@id='root']/div/div[3]/div/form/div/div/div/div[2]/div[2]/select/option"));
-            return options.stream().map(WebElement::getText).collect(Collectors.toList());
-        }
-    }
-
-    // Method to click Create button
-    public void clickDraftButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(btn_draft)).click();
-    }
-
-    // Method to click first Ok button (after Create)
-    public void clickOkAfterDraft() {
-        wait.until(ExpectedConditions.elementToBeClickable(btn_ok1)).click();
-    }
-    
- // Method to click Filters button
+  
+    // Method to click Filters button
     public void clickFiltersButton() {
         wait.until(ExpectedConditions.elementToBeClickable(btn_filters)).click();
     }
@@ -164,18 +96,18 @@ public class CM_ManagePlansDeleteDraft_Page {
         wait.until(ExpectedConditions.elementToBeClickable(label_draft)).click();
     }
     
- // Method to clickmanage_plans2
+    // Method to clickmanage_plans2
     public void clickmanage_plans2() {
         wait.until(ExpectedConditions.elementToBeClickable(manage_plans2)).click();
     }
     
- // Method to click del button (after Create)
+    // Method to click del button (after Create)
     public void clickDelDraft() {
         wait.until(ExpectedConditions.elementToBeClickable(btn_draftdel)).click();
         
     }
     
- // Method to click del button (after Create)
+    // Method to click del button (after Create)
     public void clickDelDraftok() {
         wait.until(ExpectedConditions.elementToBeClickable(btn_draftdelok)).click();
         

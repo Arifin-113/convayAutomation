@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.HashMap;
 import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -35,11 +34,8 @@ public class CM_ManagePlansFilter {
 
     @BeforeClass
     void setup() throws IOException {
-        // Set Chrome preferences to allow microphone access globally
+        // Set Chrome to access globally
         ChromeOptions options = new ChromeOptions();
-        HashMap<String, Object> contentSettings = new HashMap<>();
-        HashMap<String, Object> profile = new HashMap<>();
-        HashMap<String, Object> prefs = new HashMap<>();
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
@@ -50,7 +46,7 @@ public class CM_ManagePlansFilter {
         File excelFile = new File("TestData\\TestDataFile.xlsx");
         FileInputStream inputStream = new FileInputStream(excelFile);
         ExcelWBook = new XSSFWorkbook(inputStream);
-        ExcelWSheet = ExcelWBook.getSheetAt(3); // Sheet for setup
+        ExcelWSheet = ExcelWBook.getSheetAt(3); 
     }
 
     @BeforeMethod
@@ -58,8 +54,7 @@ public class CM_ManagePlansFilter {
         // Login before managing plans
         driver.get("https://meet2.synesisit.info/sign-in");
 
-        ExcelWSheet = ExcelWBook.getSheetAt(0); // Using sheet 0 as requested
-
+        ExcelWSheet = ExcelWBook.getSheetAt(0); 
         // Read username and password from Excel
         String username = ExcelWSheet.getRow(5).getCell(0).toString();
         String password = ExcelWSheet.getRow(5).getCell(1).toString();
@@ -76,9 +71,9 @@ public class CM_ManagePlansFilter {
     }
 
     @Test(priority = 1)
-    void testManagePlans() {
+    void CM_ManagePlans_Filter1() {
         CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); 
 
         try {
             // Navigate to home page
@@ -141,7 +136,7 @@ public class CM_ManagePlansFilter {
     }
 
     @Test(priority = 2)
-    void testManagePlans2() {
+    void CM_ManagePlans_Filter2() {
         CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
 
@@ -206,7 +201,7 @@ public class CM_ManagePlansFilter {
     }
 
     @Test(priority = 3)
-    void testManagePlans3() {
+    void CM_ManagePlans_Filter3() {
         CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
 

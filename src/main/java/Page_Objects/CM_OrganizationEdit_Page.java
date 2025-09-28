@@ -5,11 +5,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CM_OrganizationEdit_Page {
 
@@ -18,15 +15,18 @@ public class CM_OrganizationEdit_Page {
 
     // Define locators
     By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
-    By org = By.xpath("//span[normalize-space()='Organizations']");
-
-    
+    By org = By.xpath("//span[normalize-space()='Organizations']"); 
+//    By org = By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/nav/ul/li[2]/a/span[2]"); 
+    By orgn = By.xpath("By org = By.xpath(\"//span[normalize-space()='Organizations']\");");
+//    By edit_btn2 = By.xpath("//*[@id=\"root\"]/div/div[3]/div[2]/div[3]/div/table/tbody/tr[1]/td[6]/div/button/svg");
+    By edit_btn2 = By.xpath("//tbody/tr[1]/td[6]/div[1]/button[1]//*[name()='svg']");
+    By setOrgName_text2 = By.xpath("//input[@id='name']");
     By org_btn = By.xpath("//div[normalize-space()='Notre Dame Math Club']");
     By edit_btn = By.xpath("//button[contains(@type,'button')]");
-    By select_plan_typeChooseOrg = By.xpath("//*[@id=\"organizationForm\"]/div/div[1]/div/div[2]/div[2]/select/option[5]");
+    By ChooseOrg = By.xpath("//*[@id=\"organizationForm\"]/div/div[1]/div/div[2]/div[2]/select/option[5]");
     By btn_update = By.xpath("//button[normalize-space()='Update']");
     By btn_ok2 = By.xpath("//button[contains(text(),'Ok')]");
-    By edit_btn2 = By.xpath("//*[@id=\"root\"]/div/div[3]/div[2]/div[3]/div/table/tbody/tr[4]/td[6]/div/button/svg");
+    
     
 
     // Constructor
@@ -40,15 +40,45 @@ public class CM_OrganizationEdit_Page {
         wait.until(ExpectedConditions.elementToBeClickable(manage_org)).click();
     }
 
-    // Method to click Manage Plans
+    // Method to click Manage organization
     public void clickOrg() {
         wait.until(ExpectedConditions.elementToBeClickable(org)).click();
     }
+ /*   
+ // Scroll to an element using JavascriptExecutor 
+    public void scrolltoOrg() {
+        WebElement scrolltoOrg = wait.until(ExpectedConditions.visibilityOfElementLocated(org_btn));
+    }
+  */  
+    
+ // Method to click Manage organization
+    public void clickOrgn() {
+        wait.until(ExpectedConditions.elementToBeClickable(orgn)).click();
+    }
+    
+    public WebElement scrolltoOrg() {
+		// Locate the scrollable container element within the card
+		return driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[3]/div[2]/div[2]"));
+	}
+    
 
- // Method to Edit Plan A to open edit form
+ // Method to open edit form
     public void orgButton() {
         WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(org_btn));
         editButton.click();
+//         Add delay to ensure edit form loads
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+ 
+ // Method to Edit Org to open edit form
+    public void editButton() {
+//        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(edit_btn));
+//        editButton.click();
         // Add delay to ensure edit form loads
         try {
             Thread.sleep(1000);
@@ -57,24 +87,32 @@ public class CM_OrganizationEdit_Page {
         }
     }
     
- // Method to Edit Org to open edit form
-    public void editButton() {
-        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(edit_btn));
-        editButton.click();
-        // Add delay to ensure edit form loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+ // Method to click for plans
+ 	public void clicksetOrgName() {
+ 		wait.until(ExpectedConditions.elementToBeClickable(setOrgName_text2)).click();
+ 	}
+ 	//Method to clear name
+ 	public void clearsetOrgName() {
+ 		WebElement OrgName = driver.findElement(setOrgName_text2);
+
+ 		// Use JavaScript to clear the field
+ 		JavascriptExecutor fn = (JavascriptExecutor) driver;
+ 		fn.executeScript("arguments[0].value = '';", OrgName);
+ 	}
+
+ 	//Method to set name
+ 		public void setOrgName(String pn) {
+ 			driver.findElement(setOrgName_text2).sendKeys(pn);
+ 		}
     
     // Method to Edit Org to open edit form
     public void editButton2() {
-        WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(edit_btn2));
-        editButton.click();
-        // Add delay to ensure edit form loads
-        try {
+     
+    		WebElement editButton2 = wait.until(ExpectedConditions.elementToBeClickable(edit_btn2));
+        editButton2.click();
+        
+        try {// Add delay to ensure edit form loads
+        
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -83,7 +121,7 @@ public class CM_OrganizationEdit_Page {
   
  // Method to choose org
     public void typeChooseOrg() {
-        WebElement typeChooseOrg = wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeChooseOrg));
+        WebElement typeChooseOrg = wait.until(ExpectedConditions.elementToBeClickable(ChooseOrg));
         typeChooseOrg.click();
         // Add delay to ensure edit form loads
         try {

@@ -35,12 +35,8 @@ public class CM_ManagePlansSearch {
 
     @BeforeClass
     void setup() throws IOException {
-        // Set Chrome preferences to allow microphone access globally
+        // Set Chrome preferences to access globally
         ChromeOptions options = new ChromeOptions();
-        HashMap<String, Object> contentSettings = new HashMap<>();
-        HashMap<String, Object> profile = new HashMap<>();
-        HashMap<String, Object> prefs = new HashMap<>();
-        
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
@@ -51,7 +47,7 @@ public class CM_ManagePlansSearch {
         File excelFile = new File("TestData\\TestDataFile.xlsx");
         FileInputStream inputStream = new FileInputStream(excelFile);
         ExcelWBook = new XSSFWorkbook(inputStream);
-        ExcelWSheet = ExcelWBook.getSheetAt(3); // Sheet for setup
+        ExcelWSheet = ExcelWBook.getSheetAt(3); 
     }
 
     @BeforeMethod
@@ -59,7 +55,7 @@ public class CM_ManagePlansSearch {
         // Login before managing plans
         driver.get("https://meet2.synesisit.info/sign-in");
 
-        ExcelWSheet = ExcelWBook.getSheetAt(0); // Using sheet 0 as requested
+        ExcelWSheet = ExcelWBook.getSheetAt(0); 
 
         // Read username and password from Excel
         String username = ExcelWSheet.getRow(5).getCell(0).toString();
@@ -70,13 +66,13 @@ public class CM_ManagePlansSearch {
         lp.setUserName(username);
         lp.setPassword(password);
         lp.clickLogin();
-        Thread.sleep(4000); // Wait for login to complete
+        Thread.sleep(4000); 
     }
 
     @Test(priority = 1)
-    void testManagePlans() throws InterruptedException {
+    void CM_ManagePlans_Search() throws InterruptedException {
         CM_ManagePlansSearch_Page managePlans = new CM_ManagePlansSearch_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         try {
             // Navigate to home page

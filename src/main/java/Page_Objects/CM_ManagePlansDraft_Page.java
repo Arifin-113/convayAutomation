@@ -48,11 +48,7 @@ public class CM_ManagePlansDraft_Page {
     public void clickCreateLink() {
         wait.until(ExpectedConditions.elementToBeClickable(link_create)).click();
         // Add small delay to ensure page loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        
     }
     
     public void setPlanName(String user) {
@@ -62,27 +58,13 @@ public class CM_ManagePlansDraft_Page {
     // Method to click Plan Type dropdown
     public void clickPlanTypeDropdown() {
         WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeDropdown));
-        try {
-            dropdown.click();
-        } catch (Exception e) {
-            System.out.println("Standard click failed, trying JavaScript click: " + e.getMessage());
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click();", dropdown);
-        }
+
     }
 
     // Method to select Plan Type (User based or Organization based)
     public void selectPlanType(String planType) {
         WebElement dropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(select_plan_typeDropdown));
-        try {
-            // Try Select class for <select> dropdown
-            Select select = new Select(dropdown);
-            select.selectByVisibleText(planType); // e.g., "User based"
-        } catch (Exception e) {
-            // Fallback: Click the specific option (User based)
-            System.out.println("Select class failed, trying direct option click: " + e.getMessage());
-            wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeChoose)).click();
-        }
+
     }
 
     // Method to get available dropdown options for debugging

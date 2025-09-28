@@ -21,8 +21,8 @@ public class CM_ManagePlansEditPlan_Page {
     By input_search_plans = By.xpath("//input[@placeholder='Search for plans']");
     By setPlanName_text = By.xpath("//input[@placeholder='Search for plans']");
     
-    By div_plan_a = By.xpath("//div[contains(text(), 'Plan A')]");
-    By div_plan_info = By.xpath("//h3[contains(text(), 'Plan')]");
+    By plan_e = By.xpath("//div[contains(text(), 'Plan A')]");
+    By plan_info = By.xpath("//h3[contains(text(), 'Plan')]");
     By edit_btn = By.xpath("//*[@id=\"root\"]/div/div[3]/div/div[1]/div[2]/button[2]");
     By select_plan_typeChooseOrg = By.xpath("//*[@id='root']/div/div[3]/div/form/div/div/div/div[2]/div[2]/select/option[2]");
     By setPlanName_text2 = By.xpath("//input[@placeholder='Enter Plan Name']"); 
@@ -38,21 +38,12 @@ public class CM_ManagePlansEditPlan_Page {
 
     // Method to click Manage Organization link
     public void clickManageOrg() {
-        try {
+
             WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
             WebElement manageOrg = longWait.until(ExpectedConditions.elementToBeClickable(manage_org));
             System.out.println("Manage Org found: " + manageOrg.isDisplayed());
             manageOrg.click();
-        } catch (Exception e) {
-            System.out.println("Failed to click Manage Org: " + e.getMessage());
-            throw e;
-        }
-        // Add delay to ensure page stability
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 
     // Method to click Manage Plans
@@ -68,40 +59,28 @@ public class CM_ManagePlansEditPlan_Page {
  
     
     public void setPlanName(String user) {
-        try {
+
             WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(setPlanName_text));
             System.out.println("Search input found: " + searchInput.isDisplayed());
             searchInput.clear();
             searchInput.sendKeys(user);
             searchInput.sendKeys(Keys.ENTER); // Submit the search
-        } catch (Exception e) {
-            System.out.println("Failed to set plan name: " + e.getMessage());
-            throw e;
-        }
+
     }
 
     // Method to verify Plan Info header
     public boolean isPlanInfoDisplayed() {
-        try {
-            WebElement planInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(div_plan_info));
+            WebElement planInfo = wait.until(ExpectedConditions.visibilityOfElementLocated(plan_info));
             System.out.println("Plan Info found: " + planInfo.getText());
             return planInfo.isDisplayed();
-        } catch (Exception e) {
-            System.out.println("Failed to find Plan Info: " + e.getMessage());
-            return false;
-        } 
+
     }
     
     
-    public void clickPlanA() {
-        WebElement planA = wait.until(ExpectedConditions.elementToBeClickable(div_plan_a));
-        planA.click();
-        // Add delay to ensure edit form loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void clickPlan() {
+        WebElement plan = wait.until(ExpectedConditions.elementToBeClickable(plan_e));
+        plan.click();
+
     }
 
     
@@ -109,12 +88,7 @@ public class CM_ManagePlansEditPlan_Page {
     public void editButton2() {
         WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(edit_btn));
         editButton.click();
-        // Add delay to ensure edit form loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
     
    
@@ -122,19 +96,13 @@ public class CM_ManagePlansEditPlan_Page {
     public void typeChooseOrg() {
         WebElement typeChooseOrg = wait.until(ExpectedConditions.elementToBeClickable(select_plan_typeChooseOrg));
         typeChooseOrg.click();
-        // Add delay to ensure edit form loads
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 	// Method to click for plans
 	public void clickNamePlans() {
 		wait.until(ExpectedConditions.elementToBeClickable(setPlanName_text2)).click();
 	}
-
+	//Method to clear name
 	public void clearPlanName() {
 		WebElement planName = driver.findElement(setPlanName_text2);
 
@@ -143,7 +111,7 @@ public class CM_ManagePlansEditPlan_Page {
 		fn.executeScript("arguments[0].value = '';", planName);
 	}
 
-	//Method to set first name
+	//Method to set name
 		public void setPlanName2(String pn) {
 			driver.findElement(setPlanName_text2).sendKeys(pn);
 		}

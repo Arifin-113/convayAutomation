@@ -34,11 +34,9 @@ public class CM_ManagePlansCreateNewPlan {
 
     @BeforeClass
     void setup() throws IOException {
-        // Set Chrome preferences to allow microphone access globally
+        // Set Chrome preferences to access globally
         ChromeOptions options = new ChromeOptions();
-        HashMap<String, Object> contentSettings = new HashMap<>();
-        HashMap<String, Object> profile = new HashMap<>();
-        HashMap<String, Object> prefs = new HashMap<>();
+        
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
@@ -49,7 +47,7 @@ public class CM_ManagePlansCreateNewPlan {
         File excelFile = new File("TestData\\TestDataFile.xlsx");
         FileInputStream inputStream = new FileInputStream(excelFile);
         ExcelWBook = new XSSFWorkbook(inputStream);
-        ExcelWSheet = ExcelWBook.getSheetAt(3); // Sheet for setup
+        ExcelWSheet = ExcelWBook.getSheetAt(3); 
     }
 
     @BeforeMethod
@@ -57,7 +55,7 @@ public class CM_ManagePlansCreateNewPlan {
         // Login before managing plans
         driver.get("https://meet2.synesisit.info/sign-in");
 
-        ExcelWSheet = ExcelWBook.getSheetAt(0); // Using sheet 0 as requested
+        ExcelWSheet = ExcelWBook.getSheetAt(0); 
 
         // Read username and password from Excel
         String username = ExcelWSheet.getRow(5).getCell(0).toString();
@@ -72,7 +70,7 @@ public class CM_ManagePlansCreateNewPlan {
     }
 
     @Test(priority = 1)
-    void testManagePlans() throws InterruptedException {
+    void CM_ManagePlans_CreateNewPlan() throws InterruptedException {
     	CM_ManagePlansCreateNewPlan_Page managePlans = new CM_ManagePlansCreateNewPlan_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Reduced timeout
 
@@ -99,7 +97,7 @@ public class CM_ManagePlansCreateNewPlan {
 
             // Verify new tab URL
             String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl); // Debug print (syso + Ctrl + Space in Eclipse)
+            System.out.println("New tab URL: " + newTabUrl);
             Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
                     "New tab URL does not match expected: https://meet2.synesisit.info:85/");
 
@@ -108,13 +106,15 @@ public class CM_ManagePlansCreateNewPlan {
             Thread.sleep(2000);
             managePlans.clickCreateLink();
             Thread.sleep(2000);
-
             
-         // Read plan name from Excel
-            ExcelWSheet = ExcelWBook.getSheetAt(20); 
+            // Click for the created plan
+         	managePlans.clickNamePlans();
+         	Thread.sleep(2000);
+          
             
-            String planName = ExcelWSheet.getRow(0).getCell(1).toString();
-            
+            // Read plan name from Excel
+         	ExcelWSheet = ExcelWBook.getSheet("CM_ManageCreateNewPlan"); 
+            String planName = ExcelWSheet.getRow(0).getCell(0).toString();
             Thread.sleep(2000);
             
             CM_ManagePlansCreateNewPlan_Page cp = new CM_ManagePlansCreateNewPlan_Page(driver);
@@ -134,8 +134,6 @@ public class CM_ManagePlansCreateNewPlan {
             Thread.sleep(2000);
             managePlans.clickOkAfterCreate();
             Thread.sleep(2000);
-
-            
 
             // Switch back to original tab if needed
             driver.switchTo().window(originalWindow);

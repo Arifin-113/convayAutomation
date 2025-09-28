@@ -2,6 +2,7 @@ package Page_Objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,7 +21,8 @@ public class CM_ManagePlansCreateNewPlan_Page {
     By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
     By manage_plans = By.xpath("//span[normalize-space()='Manage Plans']");
     By link_create = By.xpath("//a[contains(text(),'Create')]");
-    By setPlanName_text = By.cssSelector("input[placeholder='Enter Plan Name']");
+    By setPlanName_text2 = By.xpath("//input[@placeholder='Enter Plan Name']");
+    By setPlanName_text = By.xpath("//input[@placeholder='Enter Plan Name']"); 
     By select_plan_typeDropdown = By.xpath("//select[@name='planType']");
     By select_plan_typeChoose = By.xpath("//*[@id='root']/div/div[3]/div/form/div/div/div/div[2]/div[2]/select/option[3]");
     By btn_create = By.xpath("//button[normalize-space()='Create']");
@@ -54,9 +56,16 @@ public class CM_ManagePlansCreateNewPlan_Page {
         }
     }
     
-    public void setPlanName(String user) {
-		driver.findElement(setPlanName_text).sendKeys(user);
-	}
+    // Method to click for plans
+ 	public void clickNamePlans() {
+ 		wait.until(ExpectedConditions.elementToBeClickable(setPlanName_text2)).click();
+ 	}
+    
+ 	
+ 	//Method to set name
+ 			public void setPlanName(String pn) {
+ 				driver.findElement(setPlanName_text2).sendKeys(pn);
+ 			}
 
     // Method to click Plan Type dropdown
     public void clickPlanTypeDropdown() {

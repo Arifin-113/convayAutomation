@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -35,17 +34,8 @@ public class CM_ManagePlansDraft {
 
     @BeforeClass
     void setup() throws IOException {
-        // Set Chrome preferences to allow microphone access globally
+        // Set Chrome to access globally
         ChromeOptions options = new ChromeOptions();
-        HashMap<String, Object> contentSettings = new HashMap<>();
-        HashMap<String, Object> profile = new HashMap<>();
-        HashMap<String, Object> prefs = new HashMap<>();
-        
-        contentSettings.put("media_stream_mic", 1); // 1 = allow
-        profile.put("managed_default_content_settings", contentSettings);
-        prefs.put("profile", profile);
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--use-fake-ui-for-media-stream");
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
@@ -56,7 +46,7 @@ public class CM_ManagePlansDraft {
         File excelFile = new File("TestData\\TestDataFile.xlsx");
         FileInputStream inputStream = new FileInputStream(excelFile);
         ExcelWBook = new XSSFWorkbook(inputStream);
-        ExcelWSheet = ExcelWBook.getSheetAt(3); // Sheet for setup
+        ExcelWSheet = ExcelWBook.getSheetAt(3); 
     }
 
     @BeforeMethod
@@ -64,7 +54,7 @@ public class CM_ManagePlansDraft {
         // Login before managing plans
         driver.get("https://meet2.synesisit.info/sign-in");
 
-        ExcelWSheet = ExcelWBook.getSheetAt(0); // Using sheet 0 as requested
+        ExcelWSheet = ExcelWBook.getSheetAt(0); 
 
         // Read username and password from Excel
         String username = ExcelWSheet.getRow(5).getCell(0).toString();
@@ -79,9 +69,9 @@ public class CM_ManagePlansDraft {
     }
 
     @Test(priority = 1)
-    void testManagePlans() throws InterruptedException {
+    void CM_ManagePlans_Draft() throws InterruptedException {
     	CM_ManagePlansDraft_Page managePlans = new CM_ManagePlansDraft_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Reduced timeout
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); 
 
         try {
             /// Navigate to home page
@@ -109,7 +99,7 @@ public class CM_ManagePlansDraft {
 
             // Verify new tab URL
             String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl); // Debug print (syso + Ctrl + Space in Eclipse)
+            System.out.println("New tab URL: " + newTabUrl); 
             Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
                     "New tab URL does not match expected: https://meet2.synesisit.info:85/");
 
@@ -120,7 +110,7 @@ public class CM_ManagePlansDraft {
             Thread.sleep(2000);
 
             // Read plan name from Excel
-            ExcelWSheet = ExcelWBook.getSheetAt(21); // Using sheet 0 as requested
+            ExcelWSheet = ExcelWBook.getSheetAt(21); 
             
             String planName = ExcelWSheet.getRow(0).getCell(0).toString();
             

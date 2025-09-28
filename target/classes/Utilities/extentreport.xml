@@ -10,8 +10,14 @@
 	<!-- Test configuration -->
 	<test name="Calender-Month">
 		<classes>
-			<class name="TestCases.LoginTest" />
-			<class name="TestCases.LogOutTest" />
+			<class name="TestCases.CM_ManagePlansCreateNewPlan" />
+			<class name="TestCases.CM_ManagePlansDraft" />
+			<class name="TestCases.CM_ManagePlansFilter"/>
+			<class name="TestCases.CM_ManagePlansSearch"/>
+			<class name="TestCases.CM_ManagePlansDeleteDraft"/>
+			<class name="TestCases.CM_ManagePlansEditPlan" />
+			
+			
 		</classes>
 	</test>
 

@@ -38,15 +38,6 @@ public class CM_OrganizationCreateNew {
     void setup() throws IOException {
         // Set Chrome preferences to allow microphone access globally
         ChromeOptions options = new ChromeOptions();
-        HashMap<String, Object> contentSettings = new HashMap<>();
-        HashMap<String, Object> profile = new HashMap<>();
-        HashMap<String, Object> prefs = new HashMap<>();
-        
-        contentSettings.put("media_stream_mic", 1); // 1 = allow
-        profile.put("managed_default_content_settings", contentSettings);
-        prefs.put("profile", profile);
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--use-fake-ui-for-media-stream");
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
@@ -57,7 +48,7 @@ public class CM_OrganizationCreateNew {
         File excelFile = new File("TestData\\TestDataFile.xlsx");
         FileInputStream inputStream = new FileInputStream(excelFile);
         ExcelWBook = new XSSFWorkbook(inputStream);
-        ExcelWSheet = ExcelWBook.getSheetAt(3); // Sheet for setup
+        ExcelWSheet = ExcelWBook.getSheetAt(3); 
     }
 
     @BeforeMethod
@@ -65,7 +56,7 @@ public class CM_OrganizationCreateNew {
         // Login before managing plans
         driver.get("https://meet2.synesisit.info/sign-in");
 
-        ExcelWSheet = ExcelWBook.getSheetAt(0); // Using sheet 0 as requested
+        ExcelWSheet = ExcelWBook.getSheetAt(0); 
 
         // Read username and password from Excel
         String username = ExcelWSheet.getRow(5).getCell(0).toString();

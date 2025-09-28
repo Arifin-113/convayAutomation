@@ -4,17 +4,17 @@
   <listeners>
     <listener class-name="Utilities.Extent_Reports"/>
   </listeners>
-  <test thread-count="5" name="Login Tests(failed)">
+  <test thread-count="5" name="Calender-Month(failed)">
     <classes>
-      <class name="TestCases.Login_Val_Cred">
+      <class name="TestCases.CM_ManagePlansCreateNewPlan">
         <methods>
-          <include name="teardown"/>
-          <include name="Aftermethod2"/>
-          <include name="Aftermethod1"/>
+          <include name="navigateToHomePage"/>
           <include name="setup"/>
-          <include name="LoginTest"/>
+          <include name="teardown"/>
+          <include name="captureFailureScreenshot"/>
+          <include name="CM_ManagePlans_CreateNewPlan"/>
         </methods>
-      </class> <!-- TestCases.Login_Val_Cred -->
+      </class> <!-- TestCases.CM_ManagePlansCreateNewPlan -->
     </classes>
-  </test> <!-- Login Tests(failed) -->
+  </test> <!-- Calender-Month(failed) -->
 </suite> <!-- Failed suite [Test Suite] -->
