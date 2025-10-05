@@ -11,6 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,9 +23,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import Page_Objects.Login_Page;
 import Page_Objects.CM_OrganizationEdit_Page;
+import Utilities.ConfigReader;
 import Utilities.Take_Screenshot;
 
 public class CM_OrganizationEdit {
@@ -35,11 +38,15 @@ public class CM_OrganizationEdit {
 
     @BeforeClass
     void setup() throws IOException {
-        // Set Chrome to access globally
+        // Set Chrome preferences to access globally
         ChromeOptions options = new ChromeOptions();
-      
+
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
+        
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(
+                Integer.parseInt(ConfigReader.getProperty("implicit.wait.seconds"))));
+        
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
 
@@ -47,122 +54,51 @@ public class CM_OrganizationEdit {
         File excelFile = new File("TestData\\TestDataFile.xlsx");
         FileInputStream inputStream = new FileInputStream(excelFile);
         ExcelWBook = new XSSFWorkbook(inputStream);
-        ExcelWSheet = ExcelWBook.getSheetAt(0); 
+        ExcelWSheet = ExcelWBook.getSheetAt(3); 
     }
 
     @BeforeMethod
     void navigateToHomePage() throws InterruptedException {
-        // Login before managing plans
-        driver.get("https://meet2.synesisit.info/sign-in");
-
+        driver.get(ConfigReader.getProperty("login.url"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        
         ExcelWSheet = ExcelWBook.getSheetAt(0); 
 
-        // Read username and password from Excel
+        // Login
+        Login_Page lp = new Login_Page(driver);
         String username = ExcelWSheet.getRow(5).getCell(0).toString();
         String password = ExcelWSheet.getRow(5).getCell(1).toString();
-
-        // Perform login
-        Login_Page lp = new Login_Page(driver);
         lp.setUserName(username);
         lp.setPassword(password);
         lp.clickLogin();
-        Thread.sleep(4000); 
+
+        // Wait for home page
+        wait.until(ExpectedConditions.urlContains("home"));
+
+        // Close any extra tabs left from previous test
+        String mainHandle = driver.getWindowHandle();
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(mainHandle)) {
+                driver.switchTo().window(handle);
+                driver.close();
+            }
+        }
+        driver.switchTo().window(mainHandle);
     }
-/*
+
+ 
     @Test(priority = 2)
     void CM_OrganizationEdit2() throws InterruptedException {
     	CM_OrganizationEdit_Page manageOrg = new CM_OrganizationEdit_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout      
+        SoftAssert soft = new SoftAssert();
 
         try {
             // Navigate to home page
-            driver.get("https://meet2.synesisit.info/home");
+        	driver.get(ConfigReader.getProperty("home.url")); // Use config.properties
+        	wait.until(ExpectedConditions.urlContains("home"));
             Thread.sleep(2000); // Wait for page to load
-
-            // Store the original window handle
-            String originalWindow = driver.getWindowHandle();
-            System.out.println("Original window handle: " + originalWindow);
-
-            // Click Manage Organization link (opens new tab)
-            managePlans.clickManageOrg();
             
-
-            // Wait for new tab to open
-            wait.until(ExpectedConditions.numberOfWindowsToBe(3));
-
-            // Switch to the new tab
-            Set<String> windowHandles = driver.getWindowHandles();
-            System.out.println("Window handles: " + windowHandles);
-            for (String windowHandle : windowHandles) {
-                if (!originalWindow.equals(windowHandle)) {
-                    driver.switchTo().window(windowHandle);
-                    System.out.println("Switched to new tab: " + windowHandle);
-                    break;
-                }
-            }
-
-            // Verify new tab URL
-            String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl); // Debug print
-            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
-                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
-
-            // Perform Manage Plans workflow
-            manageOrg.clickManageOrg();
-            Thread.sleep(2000);
-            
-            // Org Button Locator
-            manageOrg.orgButton();
-            Thread.sleep(4000);
-
-
-            // Edit Button Locator
-            manageOrg.editButton();
-            Thread.sleep(2000);
-            // typeChooseOrg
-            manageOrg.typeChooseOrg();
-            Thread.sleep(2000);
-            
-         // Search for the created plan
-         			manageOrg.clicksetOrgName();
-         			Thread.sleep(2000);
-
-         			manageOrg.clearsetOrgName();
-
-         			// Read plan name from Excel for Updating
-         			ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
-         			String setOrgName2 = ExcelWSheet.getRow(0).getCell(0).toString();
-         			Thread.sleep(2000);
-
-         			CM_OrganizationEdit_Page ep = new CM_OrganizationEdit_Page(driver);
-         			ep.setOrgName(setOrgName2);
-         			Thread.sleep(3000);
-            
-
-            // If Enter key doesn't submit the update, click Update button
-            manageOrg.clickUpdateButton();
-            Thread.sleep(2000);
-            manageOrg.clickOkAfterUpdate();
-            Thread.sleep(2000);
-
-            // Switch back to original tab if needed
-            driver.switchTo().window(originalWindow);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail("Test failed due to exception: " + e.getMessage());
-        }
-    }
-  */  
-    @Test(priority = 1)
-    void CM_OrganizationEdit1() throws InterruptedException {
-    	CM_OrganizationEdit_Page manageOrg = new CM_OrganizationEdit_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
-
-        try {
-            // Navigate to home page
-            driver.get("https://meet2.synesisit.info/home");
-            Thread.sleep(2000); // Wait for page to load
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
@@ -170,7 +106,6 @@ public class CM_OrganizationEdit {
 
             // Click Manage Organization link (opens new tab)
             manageOrg.clickManageOrg();
-            Thread.sleep(2000);
 
             // Wait for new tab to open
             wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -186,35 +121,38 @@ public class CM_OrganizationEdit {
                 }
             }
 
-            // Verify new tab URL
-            String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl); // Debug print
-            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
-                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
+           
+            soft.assertTrue(driver.getCurrentUrl().contains(ConfigReader.getProperty("newtab.url")));
 
-            // Perform Manage Plans workflow
+            // Perform Manage org workflow
             manageOrg.clickManageOrg();
             Thread.sleep(2000);
             
+            manageOrg.clickOrg();
+            Thread.sleep(2000);
+            
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0,50)");
+            
             // Org Button Locator
             manageOrg.orgButton();
-            Thread.sleep(3000);
+            Thread.sleep(4000);
 
 
             // Edit Button Locator
-            manageOrg.editButton2();
+            manageOrg.editButton();
             Thread.sleep(2000);
             // typeChooseOrg
             manageOrg.typeChooseOrg();
             Thread.sleep(2000);
             
-            // Search for the created org
-            manageOrg.clicksetOrgName();
+            // For setting org
+         	manageOrg.clicksetOrgName();
          	Thread.sleep(2000);
 
          	manageOrg.clearsetOrgName();
 
-         	// Read org name from Excel for Updating
+         	// Read name from Excel for Updating
          	ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
          	String setOrgName2 = ExcelWSheet.getRow(0).getCell(0).toString();
          	Thread.sleep(2000);
@@ -224,7 +162,94 @@ public class CM_OrganizationEdit {
          	Thread.sleep(3000);
             
 
-            // If Enter key doesn't submit the update, click Update button
+            // click Update button
+            manageOrg.clickUpdateButton();
+            Thread.sleep(2000);
+            manageOrg.clickOkAfterUpdate();
+            Thread.sleep(2000);
+
+            // Switch back to original tab if needed
+            driver.switchTo().window(originalWindow);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail("Test2 failed due to exception: " + e.getMessage());
+        }
+    }
+    
+   
+    @Test(priority = 1)
+    void CM_OrganizationEdit1() throws InterruptedException {
+    	CM_OrganizationEdit_Page manageOrg = new CM_OrganizationEdit_Page(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
+        
+        SoftAssert soft = new SoftAssert();
+        
+        
+
+        try {
+            // Navigate to home page
+        	driver.get(ConfigReader.getProperty("home.url")); // Use config.properties
+        	wait.until(ExpectedConditions.urlContains("home"));
+            Thread.sleep(2000); // Wait for page to load
+            
+
+            // Store the original window handle
+            String originalWindow = driver.getWindowHandle();
+            System.out.println("Original window handle: " + originalWindow);
+
+            // Click Manage Organization link (opens new tab)
+            manageOrg.clickManageOrg();
+
+            // Wait for new tab to open
+            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+            // Switch to the new tab
+            Set<String> windowHandles = driver.getWindowHandles();
+            System.out.println("Window handles: " + windowHandles);
+            for (String windowHandle : windowHandles) {
+                if (!originalWindow.equals(windowHandle)) {
+                    driver.switchTo().window(windowHandle);
+                    System.out.println("Switched to new tab: " + windowHandle);
+                    break;
+                }
+            }
+
+           
+            soft.assertTrue(driver.getCurrentUrl().contains(ConfigReader.getProperty("newtab.url")));
+
+            // Perform Manage org workflow
+            manageOrg.clickManageOrg();
+            Thread.sleep(2000);
+            
+            manageOrg.clickOrg();
+            Thread.sleep(2000);
+            
+
+            // Edit Button Locator
+            manageOrg.editButton2();
+            Thread.sleep(2000);
+            // typeChooseOrg
+            manageOrg.typeChooseOrg();
+            Thread.sleep(2000);
+            
+            // setting org
+            manageOrg.clicksetOrgName();
+         	Thread.sleep(2000);
+
+         	manageOrg.clearsetOrgName();
+
+         	// Read org name from Excel for Updating
+         	ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
+         	String setOrgName2 = ExcelWSheet.getRow(1).getCell(0).toString();
+         	Thread.sleep(2000);
+
+         	CM_OrganizationEdit_Page ep = new CM_OrganizationEdit_Page(driver);
+         	ep.setOrgName(setOrgName2);
+         	Thread.sleep(3000);
+            
+
+            //click Update button
          	manageOrg.clickUpdateButton();
             Thread.sleep(2000);
             manageOrg.clickOkAfterUpdate();
@@ -235,11 +260,87 @@ public class CM_OrganizationEdit {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Assert.fail("Test failed due to exception: " + e.getMessage());
+            Assert.fail("Test1 failed due to exception: " + e.getMessage());
         }
     }
+     
+   
+    @Test(priority = 3)
+void CM_OrganizationEdit3() throws InterruptedException {
+    CM_OrganizationEdit_Page manageOrg = new CM_OrganizationEdit_Page(driver);
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    SoftAssert soft = new SoftAssert();
+
+    try {
+        // Refresh / ensure only main tab open
+        String originalWindow = driver.getWindowHandle();
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(originalWindow)) {
+                driver.switchTo().window(handle);
+                driver.close();
+            }
+        }
+        driver.switchTo().window(originalWindow);
+
+        // Navigate to home page
+        driver.get(ConfigReader.getProperty("home.url"));
+        wait.until(ExpectedConditions.urlContains("home"));
+
+        // Click Manage Organization
+        manageOrg.clickManageOrg();
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+        // Switch to new tab
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!originalWindow.equals(windowHandle)) {
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+        }
+
+        // Verify new tab URL
+        soft.assertTrue(driver.getCurrentUrl().contains(ConfigReader.getProperty("newtab.url")));
+        Thread.sleep(500);
+        
+        manageOrg.clickManageOrg();
+        Thread.sleep(2000);
+        
+        manageOrg.clickOrg();
+        Thread.sleep(2000);
+
+
+        manageOrg.editButton2();
+        Thread.sleep(2000);
+
+        manageOrg.typeChooseOrg2();
+        Thread.sleep(2000);
+
+        manageOrg.clicksetOrgName();
+        Thread.sleep(3000);
+        manageOrg.clearsetOrgName();
+        ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
+        String setOrgName2 = ExcelWSheet.getRow(2).getCell(0).toString();
+        manageOrg.setOrgName(setOrgName2);
+        Thread.sleep(2000);
+
+        manageOrg.clickUpdateButton();
+        Thread.sleep(2000);
+        manageOrg.clickOkAfterUpdate();
+        Thread.sleep(2000);
+
+        // Close new tab and return
+        driver.close();
+        driver.switchTo().window(originalWindow);
+
+        soft.assertAll();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        Assert.fail("Test3 failed due to exception: " + e.getMessage());
+    }
+}
     
-    
+   
     @AfterMethod
     public void captureFailureScreenshot2(ITestResult result) throws IOException {
         if (ITestResult.FAILURE == result.getStatus()) {

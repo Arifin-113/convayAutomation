@@ -3,15 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.CM_OrganizationSearch">
+      <class name="TestCases.CM_OrganizationFilter">
         <methods>
           <include name="setup"/>
           <include name="teardown"/>
-          <include name="CM_Organization_Search"/>
           <include name="navigateToHomePage"/>
           <include name="captureFailureScreenshot"/>
+          <include name="CM_ManageOrganization_Filter2"/>
+          <include name="CM_ManageOrganization_Filter3"/>
+          <include name="CM_ManageOrganization_Filter4"/>
         </methods>
-      </class> <!-- TestCases.CM_OrganizationSearch -->
+      </class> <!-- TestCases.CM_OrganizationFilter -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

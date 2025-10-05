@@ -23,11 +23,12 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import Page_Objects.Login_Page;
-import Page_Objects.CM_OrganizationSearch_Page;
+import Page_Objects.CM_OrganizationDraft_Page;
+import Page_Objects.CM_OrganizationEdit_Page;
 import Utilities.ConfigReader;
 import Utilities.Take_Screenshot;
 
-public class CM_OrganizationSearch {
+public class CM_OrganizationDraft {
 
     WebDriver driver;
     XSSFWorkbook ExcelWBook;
@@ -77,8 +78,8 @@ public class CM_OrganizationSearch {
     }
 
     @Test(priority = 1)
-    void CM_Organization_Search() throws InterruptedException {
-    	CM_OrganizationSearch_Page manageOrg = new CM_OrganizationSearch_Page(driver);
+    void CM_Organization_Draft() throws InterruptedException {
+    	CM_OrganizationDraft_Page manageOrg = new CM_OrganizationDraft_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
         SoftAssert soft = new SoftAssert();
@@ -121,21 +122,31 @@ public class CM_OrganizationSearch {
             manageOrg.clickOrg();
             Thread.sleep(2000);
             
-            // Search for the created plan 
-            manageOrg.clickSearchOrg();
+            manageOrg.clickDraftOrg();
             Thread.sleep(2000);
-  
-            // Read plan name from Excel
-            ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit"); 
-            String orgName = ExcelWSheet.getRow(1).getCell(0).toString();
+        
+            // setting org
+ 			manageOrg.clicksetOrgName();
+ 			Thread.sleep(2000);
+ 			
+ 			// Read from Excel
+ 			ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
+ 			String setOrgName = ExcelWSheet.getRow(3).getCell(0).toString();
+ 			String setOrgMail = ExcelWSheet.getRow(4).getCell(0).toString();
+ 			Thread.sleep(2000);
+
+ 			CM_OrganizationDraft_Page dp = new CM_OrganizationDraft_Page(driver);
+ 			dp.setOrgName(setOrgName);
+ 			Thread.sleep(3000);
             
+            manageOrg.clickadminDraftOrg();
             Thread.sleep(2000);
             
-            CM_OrganizationSearch_Page sp = new CM_OrganizationSearch_Page(driver);
-            sp.setorgName(orgName);
-            Thread.sleep(5000);
-             
-            soft.assertTrue(manageOrg.isOrgDisplayed(orgName));
+            dp.setOrgMail(setOrgMail);
+ 			Thread.sleep(3000);
+
+            manageOrg.clicksaveDraftOrg();
+            Thread.sleep(2000);
 
             // Switch back to original tab if needed
             driver.switchTo().window(originalWindow);

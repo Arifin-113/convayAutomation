@@ -17,12 +17,8 @@ public class CM_OrganizationSearch_Page {
     By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
     By org = By.xpath("//span[normalize-space()='Organizations']"); 
     By input_search_org = By.xpath("//input[@placeholder='Search']"); 
- 
     By setorgName_text = By.xpath("//input[@placeholder='Search']");
-//    By div_org = By.xpath("//tbody/tr[1]/td[1]/div[1]/div[1]");
-    By orgResult = By.xpath("//div[contains(text(), 'organization')]");
 
-    
     // Constructor
     public CM_OrganizationSearch_Page(WebDriver driver) {
         this.driver = driver;
@@ -34,8 +30,13 @@ public class CM_OrganizationSearch_Page {
     public void clickManageOrg() {
         wait.until(ExpectedConditions.elementToBeClickable(manage_org)).click();
     }
+    
+ // Method to click Manage organization
+    public void clickOrg() {
+        wait.until(ExpectedConditions.elementToBeClickable(org)).click();
+    }
 
-    // Method to search for plans 
+    // Method to search for org 
     public void clickSearchOrg() {
         wait.until(ExpectedConditions.elementToBeClickable(input_search_org)).click();
     }
@@ -54,19 +55,15 @@ public class CM_OrganizationSearch_Page {
         }
     }
      
-/*
-    // Method to verify org exists
-    public boolean isOrgDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(div_org)).isDisplayed();
-    }
-*/
-    
+ 
     public boolean isOrgDisplayed(String orgName) {
         try {
-            WebElement result = driver.findElement(orgResult);
+            By orgResult = By.xpath(String.format("//table//td[contains(normalize-space(), '%s')]", orgName));
+            WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(orgResult));
             return result.isDisplayed() && result.getText().contains(orgName);
         } catch (Exception e) {
-            return false; // Return false if element not found
+            System.out.println("Failed to find org '" + orgName + "': " + e.getMessage());
+            return false;
         }
     }
    

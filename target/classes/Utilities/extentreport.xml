@@ -10,12 +10,14 @@
 	<!-- Test configuration -->
 	<test name="Calender-Month">
 		<classes>
-			<class name="TestCases.CM_ManagePlansCreateNewPlan" />
-			<class name="TestCases.CM_ManagePlansDraft" />
-			<class name="TestCases.CM_ManagePlansFilter"/>
-			<class name="TestCases.CM_ManagePlansSearch"/>
-			<class name="TestCases.CM_ManagePlansDeleteDraft"/>
-			<class name="TestCases.CM_ManagePlansEditPlan" />
+			
+			
+			<class name="TestCases.CM_OrganizationSearch" />
+			<class name="TestCases.CM_OrganizationEdit" />
+			<class name="TestCases.CM_OrganizationFilter" />
+			<class name="TestCases.CM_OrganizationDraft" />
+			
+			
 			
 			
 		</classes>
