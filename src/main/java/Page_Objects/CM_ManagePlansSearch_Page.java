@@ -17,10 +17,7 @@ public class CM_ManagePlansSearch_Page {
     By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
     By manage_plans = By.xpath("//span[normalize-space()='Manage Plans']");
     By input_search_plans = By.xpath("//input[@placeholder='Search for plans']"); 
- 
     By setPlanName_text = By.xpath("//input[@placeholder='Search for plans']");
-    By div_plan_a = By.xpath("//div[contains(text(), 'Plan A')]");
-    By div_plan_info = By.xpath("//h3[contains(text(), 'Plan')]");
     
     // Constructor
     public CM_ManagePlansSearch_Page(WebDriver driver) {
@@ -72,21 +69,14 @@ public class CM_ManagePlansSearch_Page {
     }
      
 
-    // Method to verify Plan A exists
-    public boolean isPlanADisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(div_plan_a)).isDisplayed();
-    }
-    
-    
-    // Method to click Plan A to open edit form
-    public void clickPlanA() {
-        WebElement planA = wait.until(ExpectedConditions.elementToBeClickable(div_plan_a));
-        planA.click();
-        // Add delay to ensure edit form loads
+    public boolean isOrgDisplayed(String planName) {
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            By orgResult = By.xpath(String.format("//table//td[contains(normalize-space(), '%s')]", planName));
+            WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(orgResult));
+            return result.isDisplayed() && result.getText().contains(planName);
+        } catch (Exception e) {
+            System.out.println("Failed to find org '" + planName + "': " + e.getMessage());
+            return false;
         }
     }
     

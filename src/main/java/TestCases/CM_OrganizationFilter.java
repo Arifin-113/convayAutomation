@@ -9,6 +9,7 @@ import java.util.Set;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -29,9 +30,9 @@ import Utilities.Take_Screenshot;
 
 public class CM_OrganizationFilter {
 
-    WebDriver driver;
+	WebDriver driver;
     XSSFWorkbook ExcelWBook;
-    XSSFSheet loginSheet;
+    XSSFSheet ExcelWSheet;
 
     @BeforeClass
     void setup() throws IOException {
@@ -40,38 +41,59 @@ public class CM_OrganizationFilter {
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
+        
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(
                 Integer.parseInt(ConfigReader.getProperty("implicit.wait.seconds"))));
+        
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
 
         // Setup Excel file
         File excelFile = new File("TestData\\TestDataFile.xlsx");
         FileInputStream inputStream = new FileInputStream(excelFile);
         ExcelWBook = new XSSFWorkbook(inputStream);
-        loginSheet = ExcelWBook.getSheetAt(0);
+        ExcelWSheet = ExcelWBook.getSheetAt(3); 
     }
 
     @BeforeMethod
     void navigateToHomePage() throws InterruptedException {
-        // Login before managing plans
-        driver.get(ConfigReader.getProperty("login.url"));
-        String username = loginSheet.getRow(5).getCell(0).toString();
-        String password = loginSheet.getRow(5).getCell(1).toString();
+        // Login 
+    	driver.get(ConfigReader.getProperty("login.url")); // Use config.properties
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(
+                Integer.parseInt(ConfigReader.getProperty("webdriver.wait.seconds"))));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        Login_Page lP = new Login_Page(driver);
+        
+		
+		js.executeScript("document.body.style.zoom='75%'");
+		Thread.sleep(3000);
+		
+		lP.clickContinueWithEmail();
+		
+
+		js.executeScript("document.body.style.zoom='100%'");
+		Thread.sleep(3000);
+		ExcelWSheet = ExcelWBook.getSheetAt(0); 
+
+        // Read username and password from Excel
+        String username = ExcelWSheet.getRow(5).getCell(0).toString();
+        String password = ExcelWSheet.getRow(5).getCell(1).toString();
 
         // Perform login
         Login_Page lp = new Login_Page(driver);
         lp.setUserName(username);
         lp.setPassword(password);
         lp.clickLogin();
-        Thread.sleep(2000);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(
-                Integer.parseInt(ConfigReader.getProperty("webdriver.wait.seconds"))));
+        // Wait for login to complete
         wait.until(ExpectedConditions.urlContains("home"));
+        System.out.println("Login completed, navigated to: " + driver.getCurrentUrl());
+
     }
 
     @Test(priority = 1)
-    void CM_ManageOrganization_Filter1() {
+    void CM_ManageOrganization_FilterBy_Status() {
         CM_OrganizationFilter_Page manageOrg = new CM_OrganizationFilter_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         SoftAssert soft = new SoftAssert();
@@ -151,7 +173,7 @@ public class CM_OrganizationFilter {
     
     
     @Test(priority = 2)
-    void CM_ManageOrganization_Filter2() {
+    void CM_ManageOrganization_FilterBy_Subscription() {
         CM_OrganizationFilter_Page manageOrg = new CM_OrganizationFilter_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         SoftAssert soft = new SoftAssert();
@@ -204,7 +226,7 @@ public class CM_OrganizationFilter {
 
             manageOrg.selectPremium();
             Thread.sleep(4000);
-          //Click again to uncheck
+            //Click again to uncheck
             manageOrg.selectPremium();
             Thread.sleep(3000);
             
@@ -229,7 +251,7 @@ public class CM_OrganizationFilter {
     }
 
     @Test(priority = 3)
-    void CM_ManageOrganization_Filter3() {
+    void CM_ManageOrganization_FilterBy_OrgType() {
         CM_OrganizationFilter_Page manageOrg = new CM_OrganizationFilter_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         SoftAssert soft = new SoftAssert();
@@ -295,7 +317,7 @@ public class CM_OrganizationFilter {
     }
     
     @Test(priority = 4)
-    void CM_ManageOrganization_Filter4() {
+    void CM_ManageOrganization_FilterBy_Recent() {
         CM_OrganizationFilter_Page manageOrg = new CM_OrganizationFilter_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         SoftAssert soft = new SoftAssert();

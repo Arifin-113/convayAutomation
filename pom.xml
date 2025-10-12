@@ -1,4 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>Com.Synesis</groupId>
@@ -13,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <selenium.version>4.24.0</selenium.version>
+        <selenium.version>4.36.0</selenium.version>
         <poi.version>5.2.5</poi.version>
         <log4j.version>2.22.0</log4j.version>
         <extent.version>5.1.1</extent.version>
@@ -123,7 +126,6 @@
                 <directory>src/test/resources</directory>
             </resource>
         </resources>
-        <!-- Add plugins for compilation and testing -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -24,7 +25,6 @@ import org.testng.asserts.SoftAssert;
 
 import Page_Objects.Login_Page;
 import Page_Objects.CM_OrganizationDraft_Page;
-import Page_Objects.CM_OrganizationEdit_Page;
 import Utilities.ConfigReader;
 import Utilities.Take_Screenshot;
 
@@ -57,9 +57,22 @@ public class CM_OrganizationDraft {
 
     @BeforeMethod
     void navigateToHomePage() throws InterruptedException {
-        // Login before managing plans
+        // Login 
     	driver.get(ConfigReader.getProperty("login.url")); // Use config.properties
-        ExcelWSheet = ExcelWBook.getSheetAt(0); 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(
+                Integer.parseInt(ConfigReader.getProperty("webdriver.wait.seconds"))));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		js.executeScript("document.body.style.zoom='75%'");
+		Thread.sleep(3000);
+		
+		Login_Page lP = new Login_Page(driver);
+		lP.clickContinueWithEmail();
+
+		js.executeScript("document.body.style.zoom='100%'");
+		Thread.sleep(3000);
+		ExcelWSheet = ExcelWBook.getSheetAt(0); 
+
         // Read username and password from Excel
         String username = ExcelWSheet.getRow(5).getCell(0).toString();
         String password = ExcelWSheet.getRow(5).getCell(1).toString();
@@ -69,12 +82,11 @@ public class CM_OrganizationDraft {
         lp.setUserName(username);
         lp.setPassword(password);
         lp.clickLogin();
-        Thread.sleep(2000); 
-        
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(
-        Integer.parseInt(ConfigReader.getProperty("webdriver.wait.seconds"))));
+
+        // Wait for login to complete
         wait.until(ExpectedConditions.urlContains("home"));
-        
+        System.out.println("Login completed, navigated to: " + driver.getCurrentUrl());
+
     }
 
     @Test(priority = 1)
@@ -122,7 +134,7 @@ public class CM_OrganizationDraft {
             manageOrg.clickOrg();
             Thread.sleep(2000);
             
-            manageOrg.clickDraftOrg();
+            manageOrg.clickCreateOrgBtn();
             Thread.sleep(2000);
         
             // setting org
@@ -130,7 +142,7 @@ public class CM_OrganizationDraft {
  			Thread.sleep(2000);
  			
  			// Read from Excel
- 			ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
+ 			ExcelWSheet = ExcelWBook.getSheet("CM_Organization");
  			String setOrgName = ExcelWSheet.getRow(3).getCell(0).toString();
  			String setOrgMail = ExcelWSheet.getRow(4).getCell(0).toString();
  			Thread.sleep(2000);

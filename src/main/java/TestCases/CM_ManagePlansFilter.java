@@ -9,6 +9,7 @@ import java.util.Set;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,9 +22,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import Page_Objects.Login_Page;
 import Page_Objects.CM_ManagePlansFilter_Page;
+import Utilities.ConfigReader;
 import Utilities.Take_Screenshot;
 
 public class CM_ManagePlansFilter {
@@ -34,11 +37,15 @@ public class CM_ManagePlansFilter {
 
     @BeforeClass
     void setup() throws IOException {
-        // Set Chrome to access globally
+        // Set Chrome preferences to access globally
         ChromeOptions options = new ChromeOptions();
 
         // Initialize WebDriver with ChromeOptions
         driver = new ChromeDriver(options);
+        
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(
+                Integer.parseInt(ConfigReader.getProperty("implicit.wait.seconds"))));
+        
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
 
@@ -50,11 +57,23 @@ public class CM_ManagePlansFilter {
     }
 
     @BeforeMethod
-    void navigateToHomePage() {
-        // Login before managing plans
-        driver.get("https://meet2.synesisit.info/sign-in");
+    void navigateToHomePage() throws InterruptedException {
+        // Login 
+    	driver.get(ConfigReader.getProperty("login.url")); // Use config.properties
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(
+                Integer.parseInt(ConfigReader.getProperty("webdriver.wait.seconds"))));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        ExcelWSheet = ExcelWBook.getSheetAt(0); 
+		js.executeScript("document.body.style.zoom='75%'");
+		Thread.sleep(3000);
+		
+		Login_Page lP = new Login_Page(driver);
+		lP.clickContinueWithEmail();
+
+		js.executeScript("document.body.style.zoom='100%'");
+		Thread.sleep(3000);
+		ExcelWSheet = ExcelWBook.getSheetAt(0); 
+
         // Read username and password from Excel
         String username = ExcelWSheet.getRow(5).getCell(0).toString();
         String password = ExcelWSheet.getRow(5).getCell(1).toString();
@@ -66,19 +85,24 @@ public class CM_ManagePlansFilter {
         lp.clickLogin();
 
         // Wait for login to complete
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.urlContains("home"));
+        System.out.println("Login completed, navigated to: " + driver.getCurrentUrl());
+
     }
 
     @Test(priority = 1)
-    void CM_ManagePlans_Filter1() {
+    void CM_ManagePlans_FilterBy_Draft() {
         CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        
+        SoftAssert soft = new SoftAssert();
 
         try {
             // Navigate to home page
-            driver.get("https://meet2.synesisit.info/home");
-            wait.until(ExpectedConditions.urlContains("home"));
+        	driver.get(ConfigReader.getProperty("home.url")); // Use config.properties
+        	wait.until(ExpectedConditions.urlContains("home"));
+            Thread.sleep(2000); // Wait for page to load
+            
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
@@ -86,7 +110,6 @@ public class CM_ManagePlansFilter {
 
             // Click Manage Organization link (opens new tab)
             managePlans.clickManageOrg();
-            Thread.sleep(2000);
 
             // Wait for new tab to open
             wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -102,16 +125,11 @@ public class CM_ManagePlansFilter {
                 }
             }
 
-            // Wait for the new tab to fully load
-            wait.until(ExpectedConditions.urlContains("https://meet2.synesisit.info:85/"));
-
-            // Verify new tab URL
-            String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl);
-            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
-                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
-
+           
+            soft.assertTrue(driver.getCurrentUrl().contains(ConfigReader.getProperty("newtab.url")));
+            
             // Perform Manage Plans workflow
+            
             managePlans.clickManagePlans();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Manage Plans']")));
             Thread.sleep(2000);
@@ -136,14 +154,18 @@ public class CM_ManagePlansFilter {
     }
 
     @Test(priority = 2)
-    void CM_ManagePlans_Filter2() {
+    void CM_ManagePlans_FilterBy_Inactive() {
         CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
+WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        
+        SoftAssert soft = new SoftAssert();
 
         try {
             // Navigate to home page
-            driver.get("https://meet2.synesisit.info/home");
-            wait.until(ExpectedConditions.urlContains("home"));
+        	driver.get(ConfigReader.getProperty("home.url")); // Use config.properties
+        	wait.until(ExpectedConditions.urlContains("home"));
+            Thread.sleep(2000); // Wait for page to load
+            
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
@@ -151,7 +173,6 @@ public class CM_ManagePlansFilter {
 
             // Click Manage Organization link (opens new tab)
             managePlans.clickManageOrg();
-            Thread.sleep(2000);
 
             // Wait for new tab to open
             wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -167,16 +188,11 @@ public class CM_ManagePlansFilter {
                 }
             }
 
-            // Wait for the new tab to fully load
-            wait.until(ExpectedConditions.urlContains("https://meet2.synesisit.info:85/"));
-
-            // Verify new tab URL
-            String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl);
-            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
-                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
-
+           
+            soft.assertTrue(driver.getCurrentUrl().contains(ConfigReader.getProperty("newtab.url")));
+            
             // Perform Manage Plans workflow
+
             managePlans.clickManagePlans();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Manage Plans']")));
             Thread.sleep(2000);
@@ -201,14 +217,18 @@ public class CM_ManagePlansFilter {
     }
 
     @Test(priority = 3)
-    void CM_ManagePlans_Filter3() {
+    void CM_ManagePlans_FilterBy_Active() {
         CM_ManagePlansFilter_Page managePlans = new CM_ManagePlansFilter_Page(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased timeout
+WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        
+        SoftAssert soft = new SoftAssert();
 
         try {
             // Navigate to home page
-            driver.get("https://meet2.synesisit.info/home");
-            wait.until(ExpectedConditions.urlContains("home"));
+        	driver.get(ConfigReader.getProperty("home.url")); // Use config.properties
+        	wait.until(ExpectedConditions.urlContains("home"));
+            Thread.sleep(2000); // Wait for page to load
+            
 
             // Store the original window handle
             String originalWindow = driver.getWindowHandle();
@@ -232,15 +252,10 @@ public class CM_ManagePlansFilter {
                 }
             }
 
-            // Wait for the new tab to fully load
-            wait.until(ExpectedConditions.urlContains("https://meet2.synesisit.info:85/"));
-
-            // Verify new tab URL
-            String newTabUrl = driver.getCurrentUrl();
-            System.out.println("New tab URL: " + newTabUrl);
-            Assert.assertTrue(newTabUrl.contains("https://meet2.synesisit.info:85/"),
-                    "New tab URL does not match expected: https://meet2.synesisit.info:85/");
-
+           
+            soft.assertTrue(driver.getCurrentUrl().contains(ConfigReader.getProperty("newtab.url")));
+            
+            
             // Perform Manage Plans workflow
             managePlans.clickManagePlans();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Manage Plans']")));

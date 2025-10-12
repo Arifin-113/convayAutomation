@@ -87,7 +87,7 @@ public class CM_OrganizationEdit_Page {
  		}
     
     // Method to Edit Org to open edit form
-    public void editButton2() {
+    public void editActionButton() {
      
     		WebElement editButton2 = wait.until(ExpectedConditions.elementToBeClickable(edit_btn2));
         editButton2.click();

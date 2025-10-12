@@ -59,36 +59,41 @@ public class CM_OrganizationEdit {
 
     @BeforeMethod
     void navigateToHomePage() throws InterruptedException {
-        driver.get(ConfigReader.getProperty("login.url"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        
-        ExcelWSheet = ExcelWBook.getSheetAt(0); 
+        // Login 
+    	driver.get(ConfigReader.getProperty("login.url")); // Use config.properties
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(
+                Integer.parseInt(ConfigReader.getProperty("webdriver.wait.seconds"))));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        // Login
-        Login_Page lp = new Login_Page(driver);
+		js.executeScript("document.body.style.zoom='75%'");
+		Thread.sleep(3000);
+		
+		Login_Page lP = new Login_Page(driver);
+		lP.clickContinueWithEmail();
+
+		js.executeScript("document.body.style.zoom='100%'");
+		Thread.sleep(3000);
+		ExcelWSheet = ExcelWBook.getSheetAt(0); 
+
+        // Read username and password from Excel
         String username = ExcelWSheet.getRow(5).getCell(0).toString();
         String password = ExcelWSheet.getRow(5).getCell(1).toString();
+
+        // Perform login
+        Login_Page lp = new Login_Page(driver);
         lp.setUserName(username);
         lp.setPassword(password);
         lp.clickLogin();
 
-        // Wait for home page
+        // Wait for login to complete
         wait.until(ExpectedConditions.urlContains("home"));
+        System.out.println("Login completed, navigated to: " + driver.getCurrentUrl());
 
-        // Close any extra tabs left from previous test
-        String mainHandle = driver.getWindowHandle();
-        for (String handle : driver.getWindowHandles()) {
-            if (!handle.equals(mainHandle)) {
-                driver.switchTo().window(handle);
-                driver.close();
-            }
-        }
-        driver.switchTo().window(mainHandle);
     }
 
  
     @Test(priority = 2)
-    void CM_OrganizationEdit2() throws InterruptedException {
+    void CM_Organization_EditBy_ClickingOrg() throws InterruptedException {
     	CM_OrganizationEdit_Page manageOrg = new CM_OrganizationEdit_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout      
         SoftAssert soft = new SoftAssert();
@@ -153,7 +158,7 @@ public class CM_OrganizationEdit {
          	manageOrg.clearsetOrgName();
 
          	// Read name from Excel for Updating
-         	ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
+         	ExcelWSheet = ExcelWBook.getSheet("CM_Organization");
          	String setOrgName2 = ExcelWSheet.getRow(0).getCell(0).toString();
          	Thread.sleep(2000);
 
@@ -179,7 +184,7 @@ public class CM_OrganizationEdit {
     
    
     @Test(priority = 1)
-    void CM_OrganizationEdit1() throws InterruptedException {
+    void CM_Organization_EditBy_ClickingActionButton() throws InterruptedException {
     	CM_OrganizationEdit_Page manageOrg = new CM_OrganizationEdit_Page(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increased timeout
         
@@ -227,7 +232,7 @@ public class CM_OrganizationEdit {
             
 
             // Edit Button Locator
-            manageOrg.editButton2();
+            manageOrg.editActionButton();
             Thread.sleep(2000);
             // typeChooseOrg
             manageOrg.typeChooseOrg();
@@ -240,7 +245,7 @@ public class CM_OrganizationEdit {
          	manageOrg.clearsetOrgName();
 
          	// Read org name from Excel for Updating
-         	ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
+         	ExcelWSheet = ExcelWBook.getSheet("CM_Organization");
          	String setOrgName2 = ExcelWSheet.getRow(1).getCell(0).toString();
          	Thread.sleep(2000);
 
@@ -266,7 +271,7 @@ public class CM_OrganizationEdit {
      
    
     @Test(priority = 3)
-void CM_OrganizationEdit3() throws InterruptedException {
+    void CM_OrganizationEdit3() throws InterruptedException {
     CM_OrganizationEdit_Page manageOrg = new CM_OrganizationEdit_Page(driver);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     SoftAssert soft = new SoftAssert();
@@ -309,7 +314,7 @@ void CM_OrganizationEdit3() throws InterruptedException {
         Thread.sleep(2000);
 
 
-        manageOrg.editButton2();
+        manageOrg.editActionButton();
         Thread.sleep(2000);
 
         manageOrg.typeChooseOrg2();
@@ -318,7 +323,7 @@ void CM_OrganizationEdit3() throws InterruptedException {
         manageOrg.clicksetOrgName();
         Thread.sleep(3000);
         manageOrg.clearsetOrgName();
-        ExcelWSheet = ExcelWBook.getSheet("CM_OrganizationEdit");
+        ExcelWSheet = ExcelWBook.getSheet("CM_Organization");
         String setOrgName2 = ExcelWSheet.getRow(2).getCell(0).toString();
         manageOrg.setOrgName(setOrgName2);
         Thread.sleep(2000);

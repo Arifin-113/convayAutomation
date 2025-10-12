@@ -16,7 +16,7 @@ public class CM_OrganizationDraft_Page {
     // Define locators
     By manage_org = By.xpath("//a[contains(@href, 'organization') or contains(., 'Manage Organization')]//span");
     By org = By.xpath("//span[normalize-space()='Organizations']"); 
-    By draft_org = By.xpath("//a[@class='btnPrimary']"); 
+    By create_orgBtn = By.xpath("//a[@class='btnPrimary']"); 
     By setorgName_text = By.xpath("//input[@id='name']");
     By adminDraft_org = By.xpath("//div[contains(text(),'Super Admin')]");
     By setorgMail_text = By.xpath("//input[contains(@placeholder,'Enter Email Address')]");
@@ -38,9 +38,9 @@ public class CM_OrganizationDraft_Page {
         wait.until(ExpectedConditions.elementToBeClickable(org)).click();
     }
 
-    // Method to click draft organization
-    public void clickDraftOrg() {
-        wait.until(ExpectedConditions.elementToBeClickable(draft_org)).click();
+ // Method to create draft organization
+    public void clickCreateOrgBtn() {
+        wait.until(ExpectedConditions.elementToBeClickable(create_orgBtn)).click();
     }
 
     // Method to click for org
