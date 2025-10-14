@@ -10,6 +10,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -21,6 +23,7 @@ import org.testng.annotations.Test;
 import Page_Objects.AddMultipleUser_Page;
 import Page_Objects.AddSingleUser_Page;
 import Page_Objects.Login_Page;
+import Utilities.ConfigReader;
 import Utilities.Take_Screenshot;
 
 public class AddMultipleUser {
@@ -33,6 +36,11 @@ public class AddMultipleUser {
 	void setup() throws IOException {
 		// Initialize WebDriver and Excel workbook
 		driver = new ChromeDriver();
+		
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(
+	                Integer.parseInt(ConfigReader.getProperty("implicit.wait.seconds"))));
+	        
+		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
 
@@ -47,8 +55,22 @@ public class AddMultipleUser {
 
 	@BeforeMethod
 	void navigateToHomePage() throws InterruptedException {
-		// Login before add users
-		driver.get("https://meet2.synesisit.info/sign-in");
+		// Login 
+    	driver.get(ConfigReader.getProperty("login.url")); // Use config.properties
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(
+                Integer.parseInt(ConfigReader.getProperty("webdriver.wait.seconds"))));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+
+		js.executeScript("document.body.style.zoom='75%'");
+		Thread.sleep(3000);
+		
+		Login_Page lP = new Login_Page(driver);
+		lP.clickContinueWithEmail();
+	
+		js.executeScript("document.body.style.zoom='100%'");
+		Thread.sleep(3000);
+		AddSingleUserSheet = ExcelWBook.getSheetAt(3); 
 
 		AddSingleUserSheet = ExcelWBook.getSheetAt(0);
 
@@ -62,6 +84,10 @@ public class AddMultipleUser {
 		lp.setPassword(password);
 		lp.clickLogin();
 		Thread.sleep(4000); // Wait for login to complete
+		
+		// Wait for login to complete
+        wait.until(ExpectedConditions.urlContains("home"));
+        System.out.println("Login completed, navigated to: " + driver.getCurrentUrl());
 	}
 
 	@Test(priority = 1) // To check download Template button is working perfectly or not

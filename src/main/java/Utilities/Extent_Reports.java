@@ -33,7 +33,7 @@ public class Extent_Reports implements ITestListener {
 		// Initialize ExtentSparkReporter with the timestamped file path
 		sparkReporter = new ExtentSparkReporter(reportPath);
 
-		sparkReporter.config().setDocumentTitle("Automation Repost"); // Title of the report
+		sparkReporter.config().setDocumentTitle("Automation Report"); // Title of the report
 		sparkReporter.config().setReportName("Functional Testing"); // Name of the report
 		sparkReporter.config().setTheme(Theme.DARK);
 

@@ -3,15 +3,21 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.CM_OrganizationCreateNew">
+      <class name="TestCases.AddMultipleUser">
         <methods>
-          <include name="teardown"/>
           <include name="navigateToHomePage"/>
+          <include name="FailedMessage"/>
+          <include name="teardown"/>
+          <include name="captureFailureScreenshot3"/>
           <include name="setup"/>
-          <include name="CM_Organization_CreateNew"/>
-          <include name="captureFailureScreenshot"/>
+          <include name="captureFailureScreenshot4"/>
+          <include name="UploadTemplate"/>
+          <include name="captureFailureScreenshot1"/>
+          <include name="captureFailureScreenshot2"/>
+          <include name="SuccessMessage"/>
+          <include name="DownloadTemplate"/>
         </methods>
-      </class> <!-- TestCases.CM_OrganizationCreateNew -->
+      </class> <!-- TestCases.AddMultipleUser -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
